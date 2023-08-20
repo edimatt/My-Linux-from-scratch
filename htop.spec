@@ -37,9 +37,14 @@ For more information and details visit htop.dev.
 %prep
 %autosetup -n %{name}-%{version}
 ./autogen.sh
-%configure
+
 
 %build
+export O='$$O'
+export ORIGIN='$ORIGIN'
+export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir"
+export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
+%configure
 %make_build
 
 

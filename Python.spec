@@ -36,6 +36,13 @@ AutoReqProv:    no
 
 %prep
 %setup -q -n Python-%{version}.%{python_micro}
+
+
+%build
+export O='$$O'
+export ORIGIN='$ORIGIN'
+export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir"
+export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
 %configure --enable-shared            \
            --with-platlibdir=%{_lib}  \
            --with-system-expat        \
@@ -44,8 +51,6 @@ AutoReqProv:    no
            --without-static-libpython \
            --disable-test-modules     \
            --with-ensurepip=no
-
-%build
 %make_build
 
 

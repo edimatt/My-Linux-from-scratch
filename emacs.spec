@@ -20,9 +20,14 @@ GNU Emacs text editor.
 %prep
 %autosetup -n %{name}-%{name}-%{version}
 ./autogen.sh
-%configure --disable-silent-rules --with-native-compilation --with-sound=yes --with-json=ifavailable
+
 
 %build
+export O='$$O'
+export ORIGIN='$ORIGIN'
+export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir"
+export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
+%configure --disable-silent-rules --with-native-compilation --with-sound=yes --with-json=ifavailable
 %make_build
 
 
