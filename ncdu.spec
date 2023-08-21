@@ -26,10 +26,7 @@ autoreconf -fi
 
 
 %build
-export O='$$O'
-export ORIGIN='$ORIGIN'
-export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir"
-export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
+%set_build_flags_with_rpath
 %configure
 %make_build
 

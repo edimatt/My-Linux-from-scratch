@@ -41,9 +41,11 @@ zoo’ of ageing Unix systems
 %prep
 %autosetup -n %{name}-%{version}
 autoreconf -fi
-%configure
+
 
 %build
+%set_build_flags_with_rpath
+%configure
 %make_build
 
 

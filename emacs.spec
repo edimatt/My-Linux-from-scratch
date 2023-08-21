@@ -23,10 +23,7 @@ GNU Emacs text editor.
 
 
 %build
-export O='$$O'
-export ORIGIN='$ORIGIN'
-export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir"
-export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
+%set_build_flags_with_rpath
 %configure --disable-silent-rules --with-native-compilation --with-sound=yes --with-json=ifavailable
 %make_build
 

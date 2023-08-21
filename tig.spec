@@ -24,9 +24,11 @@ put from various Git commands.
 %prep
 %autosetup -n %{name}-%{name}-%{version}
 ./autogen.sh
-%configure
+
 
 %build
+%set_build_flags_with_rpath
+%configure
 %make_build
 
 

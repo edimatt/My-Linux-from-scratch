@@ -24,9 +24,11 @@ ded web browser.
 %prep
 %autosetup -n %{name}-%{version}
 ./autogen.sh
-%configure
+
 
 %build
+%set_build_flags_with_rpath
+%configure
 %make_build
 
 
