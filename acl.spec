@@ -11,14 +11,14 @@ Vendor:         %{_vendor}
 URL:            https://www.mpfr.org
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel libattr-devel
-Requires:       glibc libattr
+BuildRequires:  glibc-devel EDOattr-devel
+Requires:       glibc EDOattr %{name}-libs
 Provides:       %{name} = %{version}
 
 
 %package libs
 Summary:        Development tools for the %{system_name} library.
-Requires:       glibc libattr
+Requires:       glibc EDOattr-libs
 Provides:       %{name}-libs = %{version}
 AutoReqProv:    no
 

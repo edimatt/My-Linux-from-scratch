@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://github.com/vim/vim
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel ncurses-devel pcre2-devel libattr-devel libacl-devel /usr/bin/pathfix.py 
-Requires:       glibc ncurses-libs libselinux libacl pcre2 libattr
+BuildRequires:  glibc-devel ncurses-devel pcre2-devel EDOattr-devel EDOacl-devel /usr/bin/pathfix.py 
+Requires:       glibc ncurses-libs libselinux EDOacl-libs pcre2 EDOattr-libs
 Provides:       %{name} = %{version}
 
 %description
@@ -38,7 +38,7 @@ er, and the mouse can be used.
 
 %build
 %set_build_flags_with_rpath
-export CFLAGS="%(echo %optflags | sed -e 's/-O2/-O3/g' -e 's/-D_FORTIFY_SOURCE=2/-D_FORTIFY_SOURCE=3/g')"
+export CFLAGS="%(echo %optflags | sed -e 's/-O2/-O3/g')"
 %configure
 %make_build
 
