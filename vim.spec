@@ -1,26 +1,19 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name vim
 
-Name:           vim
+Name:           EDO%{system_name}
 Version:        9.0.1258
 Release:        1%{?dist}
 Summary:        vim text editor.
 License:        GPL
+Vendor:         %{_vendor}
 URL:            https://github.com/vim/vim
-Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  ncurses-devel pcre2-devel /usr/bin/pathfix.py 
-
-%package enhanced
-Summary: A version of the VIM editor which includes recent enhancements.
-Requires: pcre2 ncurses-libs glibc
-Provides: vim
+Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-
-%package common
-Summary: The common files needed by any version of the VIM editor.
-Requires: vim-enhanced
-AutoReqProv:    no
+BuildRequires:  glibc-devel ncurses-devel pcre2-devel libattr-devel libacl-devel /usr/bin/pathfix.py 
+Requires:       glibc ncurses-libs libselinux libacl pcre2 libattr
+Provides:       %{name} = %{version}
 
 %description
 Vim is a greatly improved version of the good old UNIX editor Vi.
@@ -38,25 +31,14 @@ ters, so those who can type with ten fingers can work very  fast.
 Additionally,  function keys can be mapped to commands by the us‐
 er, and the mouse can be used.
 
-%description enhanced
-Install  the  vim‐enhanced package if you’d like to use a version
-of the VIM editor which includes recently added enhancements like
-interpreters for the Python and Perl scripting languages.  You’ll
-also need to install the vim‐common package.
-
-%description common
-The vim‐common package contains files which every VIM binary will
-need in order to run.
-
-If you are installing vim‐enhanced or vim‐X11, you’ll  also  need
-to install the vim‐common package.
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n %{system_name}-%{version}
 
 
 %build
 %set_build_flags_with_rpath
+export CFLAGS="%(echo %optflags | sed -e 's/-O2/-O3/g' -e 's/-D_FORTIFY_SOURCE=2/-D_FORTIFY_SOURCE=3/g')"
 %configure
 %make_build
 
@@ -65,11 +47,12 @@ to install the vim‐common package.
 %make_install
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_datadir/vim/vim90/tools/demoserver.py
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 
-%files enhanced
+%files
 %_bindir/ex
 %_bindir/rview
 %_bindir/rvim
@@ -77,14 +60,11 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/view
 %_bindir/vimdiff
 %_bindir/vimtutor
-
-
-%files common
 %_bindir/xxd
 %_mandir/*
-%_datadir/%name/*
-%_datadir/applications/%{name}.desktop
-%_datadir/applications/g%{name}.desktop
+%_datadir/%{system_name}/*
+%_datadir/applications/%{system_name}.desktop
+%_datadir/applications/g%{system_name}.desktop
 %_datadir/icons/*
 
 %changelog
