@@ -27,6 +27,7 @@ AutoReqProv:    no
 Summary:        Development tools for the %{system_name} library.
 Requires:       %{name}-libs = %{version}
 Provides:       %{name}-devel = %{version}
+BuildArch:      noarch
 AutoReqProv:    no
 
 

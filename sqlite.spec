@@ -23,6 +23,7 @@ AutoReqProv:    no
 %package devel
 Summary:        Development tools for the sqlite3 embeddable SQL database engine.
 Requires:       sqlite-libs
+BuildArch:      noarch
 AutoReqProv:    no
 
 

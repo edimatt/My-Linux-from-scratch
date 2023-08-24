@@ -17,6 +17,7 @@ AutoReqProv:    no
 
 %description
 
+
 %prep
 %autosetup -n %{name}-%{version}
 ./autogen.sh
@@ -31,8 +32,10 @@ AutoReqProv:    no
 %install
 %make_install
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 
 %files
 %license ag
