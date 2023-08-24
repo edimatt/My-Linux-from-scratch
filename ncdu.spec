@@ -1,17 +1,18 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name ncdu
 
-Name:           ncdu
+Name:           EDO%{system_name}
 Version:        1.14.2
 Release:        1%{?dist}
 Summary:        Ncurse disk usage analyzer.
 
 License:        GPL
 URL:            https://github.com/Efreak/ncdu
-Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  rpm-build ncurses-devel
-Requires:       ncurses-libs glibc
+Source:        %{system_name}-%{version}.tar.gz
+Patch:         %{system_name}-%{version}-errorcheck.patch
+BuildRequires:  rpm-build EDOncurses-devel
+Requires:       EDOncurses-libs glibc
 AutoReqProv:    no
 
 %description
@@ -21,13 +22,14 @@ directories are using your disk space.
 
 
 %prep
-%autosetup -n %{name}-%{version}
+%setup -n %{system_name}-%{version}
+%patch -p1
 autoreconf -fi
 
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --with-ncursesw --without-ncurses
 %make_build
 
 
@@ -38,8 +40,8 @@ autoreconf -fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%_bindir/%name
-%_mandir/man1/%name.1
+%_bindir/%{system_name}
+%_mandir/man1/%{system_name}.1
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo

@@ -1,17 +1,19 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name tig
 
-Name:           tig
+Name:           EDOtig
 Version:        2.5.7
 Release:        1%{?dist}
 Summary:        Text mode interface to git.
 
 License:        GPL
 URL:            https://github.com/jonas/tig
-Source0:        %{name}-%{name}-%{version}.tar.gz
+Source0:        %{system_name}-%{system_name}-%{version}.tar.gz
 
-BuildRequires:  rpm-build ncurses-devel
-Requires:       ncurses-libs
+BuildRequires:  rpm-build EDOncurses-devel
+Provides:       %{name} = %{version}
+Requires:       EDOncurses-libs
 AutoReqProv:    no
 
 %description
@@ -22,7 +24,7 @@ put from various Git commands.
 
 
 %prep
-%autosetup -n %{name}-%{name}-%{version}
+%autosetup -n %{system_name}-%{system_name}-%{version}
 ./autogen.sh
 
 
@@ -39,8 +41,8 @@ put from various Git commands.
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%_bindir/%name
-%_sysconfdir/%{name}rc
+%_bindir/%{system_name}
+%_sysconfdir/%{system_name}rc
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo
