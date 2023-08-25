@@ -1,17 +1,18 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name iotop
 
-Name:           iotop
+Name:           EDO%{system_name}
 Version:        1.23
 Release:        1%{?dist}
 Summary:        Top like utility for I/O
 
 License:        GPL
 URL:            https://github.com/Tomas-M/iotop
-Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  rpm-build ncurses-devel
-Requires:       glibc ncurses-libs
+Source0:        %{system_name}-%{version}.tar.gz
+Provides:       %{name} = %{version}
+BuildRequires:  rpm-build EDOncurses-devel
+Requires:       glibc EDOncurses-libs
 AutoReqProv:    no
 
 %description
@@ -36,7 +37,7 @@ Trushkin and improved by Boian Bonev so it runs without Python at
 all.
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n %{system_name}-%{version}
 
 %build
 %set_build_flags_with_rpath
@@ -51,8 +52,8 @@ all.
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%_sbindir/%{name}
-%_mandir/man8/%{name}.8
+%_sbindir/%{system_name}
+%_mandir/man8/%{system_name}.8
 
 
 %changelog

@@ -1,17 +1,18 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name htop
 
-Name:           htop
+Name:           EDO%{system_name}
 Version:        3.2.1
 Release:        1%{?dist}
 Summary:        htop is a cross-platform interactive process viewer.
 
 License:        GPL
 URL:            https://github.com/htop-dev/htop
-Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  rpm-build ncurses-devel
-Requires:       glibc ncurses-libs
+Source0:        %{system_name}-%{version}.tar.gz
+Provides:       %{name} = %{version}
+BuildRequires:  rpm-build EDOncurses-devel
+Requires:       glibc EDOncurses-libs
 AutoReqProv:    no
 
 %description
@@ -35,7 +36,7 @@ htop is written in C.
 For more information and details visit htop.dev.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{system_name}-%{version}
 ./autogen.sh
 
 
@@ -54,8 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %license htop
 %doc htop
-%_bindir/%name
-%_mandir/man1/%name.1
+%_bindir/%{system_name}
+%_mandir/man1/%{system_name}.1
 %_datadir/applications/*
 %_datadir/pixmaps/*
 %_datadir/icons/*
