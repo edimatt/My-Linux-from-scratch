@@ -1,17 +1,18 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name rlwrap
 
-Name:           rlwrap
+Name:           EDO%{system_name}
 Version:        0.46.1
 Release:        1%{?dist}
 Summary:        The readline wrapper.
 
 License:        GPL
 URL:            https://github.com/hanslub42/rlwrap
-Source0:        %{name}-%{version}.tar.gz
-
-BuildRequires:  rpm-build ncurses-devel readline-devel
-Requires:       readline ncurses-libs glibc
+Source0:        %{system_name}-%{version}.tar.gz
+Provides:       %{name} = %{version}
+BuildRequires:  rpm-build EDOncurses-devel EDOreadline-devel
+Requires:       EDOreadline EDOncurses-libs glibc
 AutoReqProv:    no
 
 %description
@@ -39,7 +40,7 @@ zoo’ of ageing Unix systems
 
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{system_name}-%{version}
 autoreconf -fi
 
 
@@ -56,9 +57,9 @@ autoreconf -fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%_bindir/%name
+%_bindir/%{system_name}
 %_mandir/man*
-%_datadir/%name/*
+%_datadir/%{system_name}/*
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo
