@@ -11,8 +11,8 @@ License:        GPL
 URL:            https://github.com/ggreer/the_silver_searcher
 Source0:        %{system_name}-%{version}.tar.gz
 Provides:       %{name} = %{version}
-BuildRequires:  rpm-build glibc-devel pcre-devel EDOxz-devel EDOzlib-devel
-Requires:       glibc pcre EDOxz-libs EDOzlib
+BuildRequires:  rpm-build glibc-devel EDOpcre-devel EDOxz-devel EDOzlib-devel
+Requires:       glibc EDOpcre EDOxz-libs EDOzlib
 AutoReqProv:    no
 
 

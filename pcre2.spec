@@ -71,7 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_bindir/%{system_name}*
+%_bindir/%{system_name}test
+%_bindir/%{system_name}grep
 %_mandir/man1/%{system_name}*.1
 %_libdir/lib%{system_name}-*.so.0
 %_libdir/lib%{system_name}-*.so.0.11.2
