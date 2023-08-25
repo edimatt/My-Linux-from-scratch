@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://github.com/vim/vim
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel ncurses-devel pcre2-devel EDOattr-devel EDOacl-devel /usr/bin/pathfix.py 
-Requires:       glibc ncurses-libs libselinux EDOacl-libs pcre2 EDOattr-libs
+BuildRequires:  glibc-devel EDOncurses-devel EDOpcre2-devel EDOattr-devel EDOacl-devel /usr/bin/pathfix.py 
+Requires:       glibc EDOncurses-libs libselinux EDOacl-libs EDOpcre2 EDOattr-libs
 Provides:       %{name} = %{version}
 
 %description
