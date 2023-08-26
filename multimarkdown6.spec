@@ -1,24 +1,25 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name multimarkdown
 
-Name:           multimarkdown
+Name:           EDO%{system_name}
 Version:        6.7.0
 Release:        1%{?dist}
 Summary:        Markdown processor.
 
 License:        GPL
 URL:            https://github.com/Efreak/ncdu
-Source0:        %{name}-%{version}.tar.gz
-
+Source0:        %{system_name}-%{version}.tar.gz
+Provides:       %{name} = %{version}
 BuildRequires:  rpm-build perl-Benchmark
-Requires:       ncurses-libs glibc
+Requires:       glibc
 AutoReqProv:    no
 
 %description
 
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{system_name}-%{version}
 
 
 %build
@@ -40,7 +41,7 @@ cd build && ctest
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%_bindir/%{name}
+%_bindir/%{system_name}
 
 
 %changelog
