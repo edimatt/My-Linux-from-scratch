@@ -1,15 +1,17 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name tmux
 
-Name:           tmux
+Name:           EDO%{system_name}
 Version:        3.3a
 Release:        1%{?dist}
 Summary:        Terminal multiplexer.
 License:        GPL
 URL:            https://github.com/tmux/tmux
-Source0:        %{name}-%{version}.tar.gz
-BuildRequires:  glibc-devel ncurses-devel libevent-devel libutempter-devel utf8proc-devel
-Requires:       glibc ncurses-libs libevent libutempter utf8proc
+Source0:        %{system_name}-%{version}.tar.gz
+Provides:       %{name} = %{version}
+BuildRequires:  glibc-devel EDOncurses-devel EDOlibevent-devel EDOlibutempter-devel EDOutf8proc-devel
+Requires:       glibc EDOncurses-libs EDOlibevent EDOlibutempter EDOutf8proc
 AutoReqProv:    no
 
 
@@ -24,7 +26,7 @@ Solaris.
 
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n %{system_name}-%{version}
 
 
 %build
@@ -46,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_bindir/%{name}
-%_mandir/man1/%{name}.1
+%_bindir/%{system_name}
+%_mandir/man1/%{system_name}.1
 
 
 %changelog
