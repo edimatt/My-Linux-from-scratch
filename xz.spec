@@ -16,7 +16,7 @@ AutoReqProv:    no
 
 %package libs
 Summary:        Libraries for decoding LZMA compression.
-Requires:       bzip2-libs openssl-libs libxcrypt glibc libffi xz-libs ncurses-libs ncurses-libs readline sqlite-libs zlib expat libuuid gdbm libnsl2
+Requires:       glibc
 Provides:       %{name}-libs = %{version}
 AutoReqProv:    no
 

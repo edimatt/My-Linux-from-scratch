@@ -1,16 +1,17 @@
 %global debug_package %{nil}
 %define _build_id_links none
 %undefine __brp_mangle_shebangs
+%define system_name utf8proc
 
-
-Name:           utf8proc
+Name:           EDO%{system_name}
 Version:        2.8.0
 Release:        1%{?dist}
 Summary:        Unicode library.
 License:        GPL
-URL:            https://libevent.org/
-Source0:        %{name}-%{version}.tar.gz
-Patch:          %{name}-%{version}-setpaths.patch
+URL:            https://juliastrings.github.io/utf8proc
+Source0:        %{system_name}-%{version}.tar.gz
+Patch:          %{system_name}-%{version}-setpaths.patch
+Provides:       %{name}-%{version}
 BuildRequires:  glibc-devel
 Requires:       glibc
 AutoReqProv:    no
@@ -53,7 +54,7 @@ LICENSE.md file for more detailed information.
 
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n %{system_name}-%{version}
 %patch -p0
 
 
@@ -71,15 +72,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/lib%{name}.so.2.6.0
-%_libdir/lib%{name}.a
+%_libdir/lib%{system_name}.so.2.6.0
+%_libdir/lib%{system_name}.so.2
+%_libdir/lib%{system_name}.a
 
 
 %files devel
-%_libdir/lib%{name}.so
-%_libdir/lib%{name}.so.2
-%_includedir/%{name}.h
-%_libdir/pkgconfig/lib%{name}.pc
+%_libdir/lib%{system_name}.so
+%_includedir/%{system_name}.h
+%_libdir/pkgconfig/lib%{system_name}.pc
 
 
 %changelog

@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://www.pcre.org
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel EDOzlib-devel bzip2-devel
-Requires:       glibc EDOzlib bzip2-libs
+BuildRequires:  glibc-devel EDOzlib-devel EDObzip2-devel
+Requires:       glibc EDOzlib EDObzip2-libs
 Provides:       %{name} = %{version}
 
 
