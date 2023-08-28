@@ -1,28 +1,31 @@
 %global debug_package %{nil}
 %define _build_id_links none
+%define system_name sqlite
 
-
-Name:           sqlite
+Name:           EDO%{system_name}
 Version:        3.40.1
 Release:        1%{?dist}
 Summary:        Library that implements an embeddable SQL database engine.
 License:        GPL
 URL:            https://github.com/vim/vim
-Source0:        %{name}-version-%{version}.tar.gz
-BuildRequires:  glibc-devel ncurses-devel zlib-devel readline-devel
-Requires:       sqlite-libs readline
+Source0:        %{system_name}-version-%{version}.tar.gz
+Provides:       %{name}-%{version}
+BuildRequires:  glibc-devel EDOncurses-devel EDOzlib-devel EDOreadline-devel
+Requires:       sqlite-libs EDOreadline %{name}-libs = %{version}
 AutoReqProv:    no
 
 
 %package libs
 Summary:        Shared library for the sqlite3 embeddable SQL database engine.
-Requires:       zlib ncurses-libs glibc
+Provides:       %{name}-libs = %{version}
+Requires:       EDOzlib EDOncurses-libs glibc
 AutoReqProv:    no
 
 
 %package devel
 Summary:        Development tools for the sqlite3 embeddable SQL database engine.
-Requires:       sqlite-libs
+Provides:       %{name}-devel = %{version}
+Requires:       %{name}-libs = %{version}
 BuildArch:      noarch
 AutoReqProv:    no
 
@@ -49,12 +52,12 @@ you will need to install sqlite‐devel.
 
 
 %prep
-%setup -n %{name}-version-%{version}
+%setup -n %{system_name}-version-%{version}
 
 
 %build
 %set_build_flags_with_rpath
-%configure --enable-static=no
+%configure --enable-static=no --with-tcl=/usr/lib64 TCLLIBDIR=%_datadir/tcl8.6/sqlite3
 %make_build
 
 
@@ -67,21 +70,22 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_bindir/%{name}3
+%_bindir/%{system_name}3
 
 
 %files libs
-%_libdir/lib%{name}3.so.0
-%_libdir/lib%{name}3.so.0.8.6
+%_libdir/lib%{system_name}3.so.0
+%_libdir/lib%{system_name}3.so.0.8.6
+%_datadir/tcl8.6/sqlite3/libtclsqlite3.so
 
 
 %files devel
-%_includedir/%{name}3.h
-%_includedir/%{name}3ext.h
-%_libdir/lib%{name}3.so
-%_libdir/pkgconfig/%{name}3.pc
-%_libdir/lib%{name}3.la
-
+%_includedir/%{system_name}3.h
+%_includedir/%{system_name}3ext.h
+%_libdir/lib%{system_name}3.so
+%_libdir/pkgconfig/%{system_name}3.pc
+%_libdir/lib%{system_name}3.la
+%_datadir/tcl8.6/sqlite3/pkgIndex.tcl
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo
