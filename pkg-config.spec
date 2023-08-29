@@ -50,7 +50,7 @@ Heen tfheen@err.no and Dan Nicholson dbn.lists@gmail.com.
 %build
 %set_build_flags_with_rpath
 export PKG_CONFIG=/usr/bin/x86_64-redhat-linux-gnu-pkg-config
-%_configure --disable-static --build=%_build
+%_configure --disable-static --build=%_build --with-pc-path=%_libdir/pkgconfig
 %make_build
 
 
