@@ -12,8 +12,8 @@ Vendor:         %{_vendor}
 URL:            https://www.freedesktop.org/wiki/Software/pkg-config
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel
-Requires:       glibc
+BuildRequires:  glibc-devel EDOpcre-devel
+Requires:       glibc EDOpcre
 Provides:       %{name} = %{version}
 
 

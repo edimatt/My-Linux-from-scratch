@@ -38,8 +38,9 @@ er, and the mouse can be used.
 
 %build
 %set_build_flags_with_rpath
-export CFLAGS="%(echo %optflags | sed -e 's/-O2/-O3/g')"
-%configure
+export CFLAGS="$(echo $CFLAGS | sed -e 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g')"
+export CXXFLAGS="$CFLAGS"
+%_configure
 %make_build
 
 
