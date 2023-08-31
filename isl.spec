@@ -39,7 +39,8 @@ GMP library.
 
 %prep
 %setup -n %{system_name}-%{system_name}-%{version}
-./autogen.sh
+# We need autoconf v2.69 which is installed in system /usr.
+%system_autoreconf
 
 
 %build

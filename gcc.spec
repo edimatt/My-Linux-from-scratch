@@ -30,7 +30,7 @@ Provides:       %{name} = %{version}
 export CFLAGS="-O3 -g -Wall"
 export CXXFLAGS="$CFLAGS"
 mkdir gcc-objdir && cd gcc-objdir
-%_prev_configure --host=%_host --build=%_build --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-isl=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --disable-multilib --enable-lto --enable-host-shared --enable-shared --enable-bootstrap
+%_prev_configure --host=%_host --build=%_build --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-isl=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --enable-bootstrap
 %make_build
 
 
@@ -68,6 +68,18 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man*/*
 %_datadir/locale/*/LC_MESSAGES/*.mo
 %_datadir/%{system_name}-%{version}/*
+%_prefix/lib/libgcc*
+%_prefix/lib/libsupc*
+%_prefix/lib/libstdc++*
+%_prefix/lib/libasan*
+%_prefix/lib/libubsan*
+%_prefix/lib/libssp*
+%_prefix/lib/libquadmath*
+%_prefix/lib/libgfortran*
+%_prefix/lib/libgomp*
+%_prefix/lib/libitm*
+%_prefix/lib/libatomic*
+%_prefix/lib/libsanitizer*
 
 
 %changelog

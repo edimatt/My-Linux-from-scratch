@@ -11,8 +11,9 @@ URL:            https://www.gnu.org/software/autoconf
 Source0:        %{system_name}-%{version}.tar.xz
 Provides:       %{name} = %{version}
 BuildArch:      noarch
-BuildRequires:  rpm-build
-Requires:       bash # perl
+BuildRequires:  rpm-build EDOm4
+Requires:       bash EDOm4
+# Requires:     perl
 AutoReqProv:    no
 
 %description
@@ -38,6 +39,8 @@ scripts, not their use.
 
 %build
 %set_build_flags_with_rpath
+export M4=%_bindir/m4
+export EMACS=%_bindir/emacs
 %configure
 %make_build
 

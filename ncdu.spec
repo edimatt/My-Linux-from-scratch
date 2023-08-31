@@ -24,12 +24,12 @@ directories are using your disk space.
 %prep
 %setup -n %{system_name}-%{version}
 %patch -p1
+autoupdate
 autoreconf -fi
 
 
 %build
-%set_build_flags_with_rpath
-%configure --with-ncursesw --without-ncurses
+%configure --with-ncursesw
 %make_build
 
 
