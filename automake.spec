@@ -3,7 +3,7 @@
 %define system_name automake
 
 Name:           EDO%{system_name}
-Version:        1.16
+Version:        1.16.5
 Release:        1%{?dist}
 Summary:        A GNU tool for automatically creating Makefiles.
 License:        GPL
@@ -41,8 +41,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/auto*
 %_bindir/aclocal*
-%_datadir/%{system_name}-%{version}/*
-%_datadir/aclocal-%{version}/*
+%_datadir/%{system_name}-1.16/*
+%_datadir/aclocal-1.16/*
 %_datadir/aclocal/README
 %_docdir/%{system_name}/*
 %ghost %_infodir/dir
