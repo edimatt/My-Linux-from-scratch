@@ -76,16 +76,17 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man1/iconv.1
 %_docdir/iconv*
 %_datadir/locale/*/LC_MESSAGES/%{system_name}.mo
+# We want the linker names to be here because there is a runtime dependency with libstdc++.
+%_libdir/%{system_name}*.so
+%_libdir/%{system_name}*.la
+%_libdir/libcharset.so
+%_libdir/libcharset.la
 
 
 %files devel
 %_mandir/man3/iconv*.3
 %_includedir/*charset.h
 %_includedir/iconv.h
-%_libdir/%{system_name}*.so
-%_libdir/%{system_name}*.la
-%_libdir/libcharset.so
-%_libdir/libcharset.la
 
 
 %changelog
