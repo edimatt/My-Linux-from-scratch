@@ -1,22 +1,23 @@
 %global debug_package %{nil}
 %define _build_id_links none
-%define python_micro 4
+%define python_micro 5
+%define system_name python
 
-Name:           python
+Name:           EDO%{system_name}
 Version:        3.11
 Release:        %{python_micro}%{?dist}
 Summary:        python
 License:        GPL
 URL:            www.python.org
-Source0:        Python-%{version}.%{python_micro}.tgz
-BuildRequires:  expat-devel bzip2-devel openssl-devel libxcrypt-devel glibc-devel libffi-devel xz-devel ncurses-devel readline-devel sqlite-devel zlib-devel libuuid-devel gdbm-devel libnsl2-devel /usr/bin/pathfix.py
-Requires:       python-libs = %{version}
+Source0:        Python-%{version}.%{python_micro}.tar.xz
+BuildRequires:  EDOexpat-devel EDObzip2-devel openssl-devel libxcrypt-devel glibc-devel EDOlibffi-devel EDOxz-devel EDOncurses-devel EDOreadline-devel EDOsqlite-devel EDOzlib-devel EDOlibuuid-devel EDOgdbm-devel /usr/bin/pathfix.py
+Requires:       %{name}-libs = %{version}
 Provides:       %{name} = %{version}
 AutoReqProv:    no
 
 %package libs
 Summary:        Shared libraries.
-Requires:       bzip2-libs openssl-libs libxcrypt glibc libffi xz-libs ncurses-libs ncurses-libs readline sqlite-libs zlib expat libuuid gdbm libnsl2
+Requires:       EDObzip2-libs openssl-libs libxcrypt glibc EDOlibffi EDOxz-libs EDOncurses-libs EDOncurses-libs EDOreadline EDOsqlite-libs EDOzlib EDOexpat EDOlibuuid EDOgdbm
 Provides:       %{name}-libs = %{version}
 AutoReqProv:    no
 
@@ -40,20 +41,20 @@ AutoReqProv:    no
 
 %build
 %set_build_flags_with_rpath
-%configure --enable-shared            \
-           --with-platlibdir=%{_lib}  \
-           --with-system-expat        \
-           --with-system-ffi          \
-           --enable-optimizations     \
-           --without-static-libpython \
-           --disable-test-modules     \
+%_configure --enable-shared            \
+           --with-platlibdir=%{_lib}   \
+           --with-system-expat         \
+           --with-system-ffi           \
+           --enable-optimizations      \
+           --without-static-libpython  \
+           --disable-test-modules      \
            --with-ensurepip=no
 %make_build
 
 
 %install
 %{make_install}
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_libdir/%{name}%{version}/*
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_libdir/%{system_name}%{version}/*
 
 
 %clean
@@ -63,25 +64,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/idle*
 %_bindir/pydoc*
-%_bindir/%{name}3
-%_bindir/%{name}%{version}
-%_mandir/man1/%{name}*
+%_bindir/%{system_name}3
+%_bindir/%{system_name}%{version}
+%_mandir/man1/%{system_name}*
 
 
 %files libs
-%_libdir/%{name}*
-%_libdir/lib%{name}3.so
-%_libdir/lib%{name}%{version}.so.1.0
+%_libdir/%{system_name}*
+%_libdir/lib%{system_name}3.so
+%_libdir/lib%{system_name}%{version}.so.1.0
 
 
 %files devel
 %_bindir/2to3
 %_bindir/2to3-%{version}
-%_bindir/%{name}3-config
-%_bindir/%{name}%{version}-config
-%_libdir/lib%{name}%{version}.so
-%_libdir/pkgconfig/%{name}*
-%_includedir/%{name}*
+%_bindir/%{system_name}3-config
+%_bindir/%{system_name}%{version}-config
+%_libdir/lib%{system_name}%{version}.so
+%_libdir/pkgconfig/%{system_name}*
+%_includedir/%{system_name}*
 
 
 %changelog

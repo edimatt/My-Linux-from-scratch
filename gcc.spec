@@ -30,12 +30,14 @@ Provides:       %{name} = %{version}
 export CFLAGS="-O3 -g -Wall"
 export CXXFLAGS="$CFLAGS"
 mkdir gcc-objdir && cd gcc-objdir
-%_prev_configure --host=%_host --build=%_build --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-isl=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --enable-bootstrap
+%_prev_configure --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --disable-bootstrap
 %make_build
 
 
 %install
 cd gcc-objdir && %make_install
+%{buildroot}%_bindir/gcc -dumpspecs > specs
+sed '/*link:/ {N;s_$_ %{m32:-rpath=\$ORIGIN/../lib:/opt/edo/lib} %{m64:-rpath=\$ORIGIN/../lib64:/opt/edo/lib64} %{!m32:%{!m64:-rpath=\$ORIGIN/../lib64:/opt/edo/lib64}}_}' specs > %{buildroot}%{_libdir}/%{system_name}/%{_build}/%{version}/specs
 
 
 %clean
@@ -43,8 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libexecdir/%{system_name}/x86_64-edo-linux-gnu/%{version}/*
-%_libdir/%{system_name}/x86_64-edo-linux-gnu/%{version}/*
+%_libdir/%{system_name}/%{_build}/%{version}/*
 %_libdir/libcc1*
 %_libdir/libgcc*
 %_libdir/libsupc*
@@ -66,7 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %_infodir/dir
 %_infodir/*.info
 %_mandir/man*/*
-%_datadir/locale/*/LC_MESSAGES/*.mo
 %_datadir/%{system_name}-%{version}/*
 %_prefix/lib/libgcc*
 %_prefix/lib/libsupc*
@@ -80,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %_prefix/lib/libitm*
 %_prefix/lib/libatomic*
 %_prefix/lib/libsanitizer*
+%_datadir/locale/*/LC_MESSAGES/*.mo
 
 
 %changelog
