@@ -36,8 +36,7 @@ be able to link against TI-RPC for IPv6 support.
 
 %prep
 %setup -n %{system_name}-%{version}
-autoupdate
-autoreconf -fi
+%system_autoreconf
 
 
 %build

@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Dynamic library for access control list support.
 License:        GPL
 Vendor:         %{_vendor}
-URL:            https://www.mpfr.org
+URL:            https://download-mirror.savannah.gnu.org/releases/acl
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
 BuildRequires:  glibc-devel EDOattr-devel

@@ -7,7 +7,7 @@ Version:        5.38.0
 Release:        1%{?dist}
 Summary:        Perl scripting language.
 License:        GPL
-URL:            https://www.openssl.org
+URL:            https://www.perl.org
 Source0:        %{system_name}-%{version}.tar.xz
 Provides:       %{name} = %{version}
 BuildRequires:  rpm-build glibc-devel

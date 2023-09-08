@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Markdown processor.
 
 License:        GPL
-URL:            https://github.com/Efreak/ncdu
+URL:            https://github.com/fletcher/MultiMarkdown-6
 Source0:        %{system_name}-%{version}.tar.gz
 Provides:       %{name} = %{version}
 BuildRequires:  rpm-build perl-Benchmark

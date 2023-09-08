@@ -11,8 +11,8 @@ License:        GPL
 URL:            https://github.com/emacs-mirror/emacs
 Source0:        %{system_name}-%{system_name}-%{version}.tar.gz
 
-BuildRequires:  nettle-devel zlib-devel giflib-devel libjpeg-turbo-devel gtk3-devel gnutls-devel libXpm-devel libjpeg-turbo-devel texinfo rpm-build ncurses-devel
-Requires:       atk at-spi2-atk at-spi2-core bzip2-libs cairo cairo-gobject dbus-libs fontconfig freetype fribidi gdk-pixbuf2 giflib glib2 glibc gmp gnutls graphite2 gtk3 harfbuzz jbigkit-libs json-glib libblkid libbrotli libcap libdatrie libepoxy libffi libgcc libgcrypt libgpg-error libicu libidn2 libjpeg-turbo libmount libpng libselinux libstdc++ libstemmer libtasn1 libthai libtiff libtracker-sparql libunistring libwayland-client libwayland-cursor libwayland-egl libwebp libX11 libX11-xcb libXau libxcb libXcomposite libXcursor libXdamage libXext libXfixes libXi libXinerama libxkbcommon libxml2 libXrandr libXrender libzstd lz4-libs ncurses-libs nettle p11-kit pango pcre pcre2 pixman sqlite-libs systemd-libs xz-libs zlib
+BuildRequires:  nettle-devel EDOzlib-devel giflib-devel libjpeg-turbo-devel gtk3-devel gnutls-devel libXpm-devel libjpeg-turbo-devel texinfo rpm-build EDOncurses-devel EDOlibffi-devel EDOxz-devel EDOsqlite-devel EDOzstd-devel
+Requires:       atk at-spi2-atk at-spi2-core bzip2-libs cairo cairo-gobject dbus-libs fontconfig freetype fribidi gdk-pixbuf2 giflib glib2 glibc EDOgmp gnutls graphite2 gtk3 harfbuzz jbigkit-libs json-glib libblkid libbrotli libcap libdatrie libepoxy EDOlibffi libgcc libgcrypt libgpg-error libicu libidn2 libjpeg-turbo libmount libpng libselinux libstdc++ libstemmer libtasn1 libthai libtiff libtracker-sparql libunistring libwayland-client libwayland-cursor libwayland-egl libwebp libX11 libX11-xcb libXau libxcb libXcomposite libXcursor libXdamage libXext libXfixes libXi libXinerama libxkbcommon libxml2 libXrandr libXrender EDOzstd lz4-libs EDOncurses-libs nettle p11-kit pango EDOpcre EDOpcre2 pixman EDOsqlite-libs systemd-libs EDOxz-libs EDOzlib
 Provides:       %{name} = %{version}
 AutoReqProv:    no
 

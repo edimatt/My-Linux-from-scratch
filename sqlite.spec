@@ -7,7 +7,7 @@ Version:        3.40.1
 Release:        1%{?dist}
 Summary:        Library that implements an embeddable SQL database engine.
 License:        GPL
-URL:            https://github.com/vim/vim
+URL:            https://www.sqlite.org/index.html
 Source0:        %{system_name}-version-%{version}.tar.gz
 Provides:       %{name}-%{version}
 BuildRequires:  glibc-devel EDOncurses-devel EDOzlib-devel EDOreadline-devel
