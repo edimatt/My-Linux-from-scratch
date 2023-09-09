@@ -76,7 +76,6 @@ make check
 
 %install
 %make_install
-%{__mv} %{buildroot}%{_docdir}/%{system_name} %{buildroot}%{_docdir}/%{name}
 
 
 %clean
