@@ -1,48 +1,58 @@
 # hardening breaks the set-interpreter-long test on i686, x86_64, ppc64le, s390x
 %undefine _hardened_build
+%global debug_package %{nil}
+%define _build_id_links none
+%define system_name patchelf
 
-Name:           patchelf
+Name:           EDO%{system_name}
 Version:        0.15.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A utility for patching ELF binaries
-
 License:        GPLv3+
 URL:            http://nixos.org/patchelf.html
-Source0:        https://github.com/NixOS/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
-
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
+Source0:        https://github.com/NixOS/%{system_name}/archive/%{version}/%{system_name}-%{version}.tar.gz
+Patch0:         %{system_name}-%{version}-tests.patch
+Provides:       %{name} = %{version}
+Requires:       EDOgcc
+Requires:       glibc
+BuildRequires:  EDOgcc
 BuildRequires:  make
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  coreutils
-BuildRequires:  libacl-devel
-BuildRequires:  libattr-devel
+BuildRequires:  EDOautoconf
+BuildRequires:  EDOautomake
+BuildRequires:  EDOcoreutils
+AutoReqProv:    no
+
 
 %description
-PatchELF is a simple utility for modifying an existing ELF executable
-or library.  It can change the dynamic loader ("ELF interpreter")
-of an executable and change the RPATH of an executable or library.
+PatchELF  is  a simple utility for modifying an existing ELF exe‐
+cutable or library.  It can change the dynamic loader  ("ELF  in‐
+terpreter")  of  an  executable  and  change the RPATH of an exe‐
+cutable or library.
+
 
 %prep
-%setup -q
+%setup -q -n %{system_name}-%{version}
+%patch0 -p1
 
 # package ships elf.h - delete to use glibc-headers one
 rm src/elf.h
 
 %build
-%configure
-make %{?_smp_mflags}
+%set_build_flags_with_rpath
+%_configure
+%make_build
+
 
 %check
 make check
 
-%install
-make install DESTDIR=%{buildroot}
 
-# the docs get put in a funny place, so delete and include in the
-# standard way in the docs section below
-rm -rf %{buildroot}/usr/share/doc/%{name}
+%install
+%make_install
+
+mkdir -p %{buildroot}%{_docdir}/%{name}
+mv %{buildroot}%{_docdir}/%{system_name}/README.md %{buildroot}%{_docdir}/%{name}/
+
 
 %files
 %license COPYING
@@ -50,7 +60,13 @@ rm -rf %{buildroot}/usr/share/doc/%{name}
 %{_bindir}/patchelf
 %{_mandir}/man1/patchelf.1*
 
+
 %changelog
+* Sun Sep 09 2023 edimatt <edoardo.dimatteo@gmail.com> - 0.15.0-2
+- Patch test suite.
+- Relocate docs into %{name}.
+- Adjust provides and requires.
+
 * Sat Jul 23 2022 Jeremy Sanders <jeremy@jeremysanders.net> - 0.15.0-1
 - Update to 0.15.0 (#2107831)
 
