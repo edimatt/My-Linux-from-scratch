@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        A library for editing typed command lines.
 License:        GPL
 Vendor:         %{_vendor}
-URL:            https://tiswww.case.edu/php/chet/readline/rltop.html
+URL:            https://ftp.gnu.org/gnu/readline
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
 BuildRequires:  glibc-devel

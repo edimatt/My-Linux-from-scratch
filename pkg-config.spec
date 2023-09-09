@@ -10,9 +10,9 @@ Summary:        A helper tool used when compiling applications and libraries
 License:        GPL
 Vendor:         %{_vendor}
 URL:            https://www.freedesktop.org/wiki/Software/pkg-config
-Source0:        %{system_name}-%{version}.tar.gz
+Source0:        %{system_name}-%{version}.tar.xz
 AutoReqProv:    no
-BuildRequires:  glibc-devel EDOpcre-devel
+BuildRequires:  glibc-devel EDOpcre-devel EDOkyua
 Requires:       glibc EDOpcre
 Provides:       %{name} = %{version}
 
@@ -45,6 +45,7 @@ Heen tfheen@err.no and Dan Nicholson dbn.lists@gmail.com.
 
 %prep
 %setup -n %{system_name}-%{version}
+autoreconf -fi
 
 
 %build
@@ -56,7 +57,7 @@ export PKG_CONFIG=/usr/bin/x86_64-redhat-linux-gnu-pkg-config
 
 %check
 # Requires the kyua framework.
-# make check
+make check
 
 
 %install

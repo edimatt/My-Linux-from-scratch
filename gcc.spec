@@ -18,6 +18,24 @@ Requires:       glibc EDOgmp EDOmpfr EDOmpc
 Provides:       %{name} = %{version}
 
 %description
+The  GNU  Compiler Collection includes front ends for C, C++, Ob‐
+jective‐C, Fortran, Ada, Go, and D,  as  well  as  libraries  for
+these  languages  (libstdc++,...).  GCC was originally written as
+the compiler for the GNU operating system. The GNU system was de‐
+veloped  to  be 100% free software, free in the sense that it re‐
+spects the user’s freedom.
+
+We strive to provide regular, high  quality  releases,  which  we
+want  to  work well on a variety of native and cross targets (in‐
+cluding GNU/Linux), and encourage everyone to contribute  changes
+or help testing GCC. Our sources are readily and freely available
+via Git and weekly snapshots.
+
+Major decisions about GCC are made  by  the  steering  committee,
+guided by the mission statement.
+
+NOTE. Uninstall libiconv-devel otherwise libstdc++ will have a
+runtime dependeny to libiconv!
 
 
 %prep
@@ -27,7 +45,7 @@ Provides:       %{name} = %{version}
 
 %build
 %set_build_flags_with_rpath
-export CFLAGS="-O3 -g -Wall"
+export CFLAGS="-O3 -m64 -g -Wall"
 export CXXFLAGS="$CFLAGS"
 mkdir gcc-objdir && cd gcc-objdir
 %_prev_configure --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --disable-bootstrap
