@@ -4,7 +4,7 @@
 
 Name:           EDO%{system_name}
 Version:        2.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Dynamic library for access control list support.
 License:        GPL
 Vendor:         %{_vendor}
@@ -66,7 +66,7 @@ devel, you’ll also want to install attr.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --disable-static
 %make_build
 
 
@@ -76,6 +76,7 @@ make check
 
 %install
 %make_install
+%{__mv} %{buildroot}%{_docdir}/%{system_name} %{buildroot}%{_docdir}/%{name}
 
 
 %clean
@@ -83,34 +84,23 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_docdir/%{system_name}/CHANGES
-%_docdir/%{system_name}/COPYING
-%_docdir/%{system_name}/COPYING.LGPL
+%doc CHANGES
+%doc COPYING
+%doc COPYING.LGPL
+%doc PORTING
 %_bindir/%{system_name}
 %_bindir/getf%{system_name}
 %_bindir/setf%{system_name}
 %_mandir/man1/getf%{system_name}.1
 %_mandir/man1/setf%{system_name}.1
 %_mandir/man1/%{system_name}.1
-%_datadir/locale/en@boldquot/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/en@quot/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/cs/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/de/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/es/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/fr/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/gl/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/nl/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/pl/LC_MESSAGES/%{system_name}.mo
-%_datadir/locale/sv/LC_MESSAGES/%{system_name}.mo
+%_datadir/locale/*/LC_MESSAGES/%{system_name}.mo
 
 
 %files libs
-%_docdir/%{system_name}/PORTING
 %_sysconfdir/x%{system_name}.conf
-%_libdir/lib%{system_name}.a
 %_libdir/lib%{system_name}.la
-%_libdir/lib%{system_name}.so.1
-%_libdir/lib%{system_name}.so.1.1.2501
+%_libdir/lib%{system_name}.so.1*
 
 
 %files devel
@@ -123,5 +113,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Aug 09 2023 edimatt <edoardo.dimatteo@gmail.com> 2.5.1-2
+- Disable static library.
+- Simplify files section and fix the doc macro.
+
 * Thu Jan 26 2023 Edoardo Di Matteo
 - 

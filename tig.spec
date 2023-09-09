@@ -2,19 +2,18 @@
 %define _build_id_links none
 %define system_name tig
 
-Name:           EDOtig
+Name:           EDO%{system_name}
 Version:        2.5.7
 Release:        1%{?dist}
 Summary:        Text mode interface to git.
-
 License:        GPL
 URL:            https://github.com/jonas/tig
 Source0:        %{system_name}-%{system_name}-%{version}.tar.gz
-
 BuildRequires:  rpm-build EDOncurses-devel
 Provides:       %{name} = %{version}
 Requires:       EDOncurses-libs
 AutoReqProv:    no
+
 
 %description
 Tig is an ncurses‐based text‐mode interface for git. It functions
@@ -30,7 +29,7 @@ put from various Git commands.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%_configure
 %make_build
 
 
@@ -43,6 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/%{system_name}
 %_sysconfdir/%{system_name}rc
+
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo
