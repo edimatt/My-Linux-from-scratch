@@ -33,7 +33,7 @@ of choice.
 
 %prep
 %setup -n %{system_name}-%{version}
-autoreconf -fi
+%autoreconf
 
 
 %build

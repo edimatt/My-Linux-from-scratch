@@ -29,7 +29,7 @@ and create single sudoku PNGs like the following:
 
 %prep
 %setup -n %{system_name}-%{version}
-autoreconf -fi
+%autoreconf
 
 
 %build

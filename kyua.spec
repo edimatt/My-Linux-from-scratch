@@ -63,9 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc AUTHORS CONTRIBUTING.md CONTRIBUTORS LICENSE NEWS.md
 %_bindir/%{system_name}
 %_datadir/%{system_name}/*
-%_docdir/%{system_name}/*
 %_mandir/man1/%{system_name}*.1
 %_mandir/man5/%{system_name}*.5
 

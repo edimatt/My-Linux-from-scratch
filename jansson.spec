@@ -43,7 +43,7 @@ source distribution for details.
 
 %prep
 %setup -n %{system_name}-%{version}
-autoreconf -fi
+%system_autoreconf
 
 
 %build

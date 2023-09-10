@@ -41,7 +41,7 @@ zoo’ of ageing Unix systems
 
 %prep
 %autosetup -n %{system_name}-%{version}
-autoreconf -fi
+%autoreconf
 
 
 %build

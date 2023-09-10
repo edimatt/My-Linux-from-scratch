@@ -1,0 +1,41 @@
+%_build_id_links none
+%_topdir %(echo $HOME)/rpmbuild
+%_vendor edo
+%_prefix /opt/%{_vendor}
+%_sysconfdir /etc%_prefix
+%_docdir %_datadir/doc
+%_libexecdir %_libdir
+
+%__scm_usermail <edoardo.dinatteo@gmail.com>
+%__scm_username Di Matteo, Edoardo
+
+%__arch_install_post \
+    [ "%{buildarch}" = "noarch" ] || QA_CHECK_RPATHS=1 ; \
+    # case "${QA_CHECK_RPATHS:-}" in [1yY]*) /usr/lib/rpm/check-rpaths ;; esac \
+    /usr/lib/rpm/check-buildroot
+
+%_build x86_64-edo-linux-gnu
+%_host x86_64-edo-linux-gnu
+
+%set_build_flags_with_rpath \
+    export PATH="%_bindir:%_sbindir:$PATH" \
+    export O='$$O' \
+    export ORIGIN='$ORIGIN' \
+    export CC=%_bindir/gcc \
+    export CXX=%_bindir/g++ \
+    export CPPFLAGS="-I%_includedir" \
+    export CFLAGS="%(echo %optflags -I%_includedir -Wl,-L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir | sed -e 's/-O[0-9]* */-O3 /g')" \
+    export CXXFLAGS="$CFLAGS" \
+    export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir"
+
+%_configure ./configure --build=%_build --host=%_host --program-prefix=%{?_program_prefix} --disable-dependency-tracking %{?_configure_disable_silent_rules:--disable-silent-rules} --prefix=%{_prefix} --exec-prefix=%{_exec_prefix} --bindir=%{_bindir} --sbindir=%{_sbindir} --sysconfdir=%{_sysconfdir} --datadir=%{_datadir} --includedir=%{_includedir} --libdir=%{_libdir} --libexecdir=%{_libexecdir} --localstatedir=%{_localstatedir} --sharedstatedir=%{_sharedstatedir} --mandir=%{_mandir} --infodir=%{_infodir} --docdir=%{_docdir}/%{name} --disable-static
+
+%_prev_configure .%{_configure}
+
+%meson_setup meson setup _build -Dprefix=%_prefix -Dc_args="$CFLAGS" -Dcpp_args="$CXXFLAGS" -Dc_link_args="$LDFLAGS" -Dsysconfdir=%_sysconfdir
+%meson_build meson compile -C _build
+%meson_install meson install -C _build --destdir=%{buildroot}
+%meson_test meson test -C _build
+
+%system_autoreconf /usr/bin/autoreconf -f -i -Wall,no-obsolete
+%autoreconf %_bindir/autoreconf -f -i -Wall,no-obsolete

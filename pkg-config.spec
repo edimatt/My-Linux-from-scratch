@@ -45,7 +45,7 @@ Heen tfheen@err.no and Dan Nicholson dbn.lists@gmail.com.
 
 %prep
 %setup -n %{system_name}-%{version}
-autoreconf -fi
+%autoreconf
 
 
 %build
@@ -69,10 +69,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc %{system_name}-guide.html
 %_bindir/%{system_name}
 %_bindir/%{_arch}-%{_vendor}*
 %_mandir/man1/%{system_name}.1
-%_docdir/%{system_name}/%{system_name}-guide.html
 %_datadir/aclocal/pkg.m4
 
 
