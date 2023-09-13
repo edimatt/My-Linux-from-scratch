@@ -54,7 +54,10 @@ for developing applications that use libxcrypt.
 
 %build
 %set_build_flags_with_rpath
-%_configure --disable-static
+%_configure --disable-static             \
+            --enable-hashes=strong,glibc \
+            --enable-obsolete-api=no     \
+            --disable-failure-tokens
 %make_build
 
 
@@ -70,15 +73,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/libcrypt.so.1*
-%_libdir/libowcrypt.so.1
+%_libdir/libcrypt.so.2*
 %_mandir/man5/crypt*.5
 
 
 %files devel
 %_libdir/libcrypt.so
-%_libdir/libxcrypt.so
-%_libdir/libowcrypt.so
 %_libdir/libcrypt.la
 %_libdir/pkgconfig/lib*crypt.pc
 %_mandir/man3/crypt*.3
