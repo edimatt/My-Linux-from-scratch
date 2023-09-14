@@ -33,7 +33,7 @@ and IDEs to discover and use libraries configured by pkgconf.
 
 %build
 %set_build_flags_with_rpath
-%_configure --disable-static
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc README.md AUTHORS
 %_bindir/%{system_name}
 %_bindir/bomtool
 %_libdir/lib%{system_name}.so*
@@ -60,7 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man1/%{system_name}.1
 %_mandir/man5/*
 %_mandir/man7/pkg.m4.7
-%_docdir/%{system_name}/*
 %_datadir/aclocal/pkg.m4
 
 

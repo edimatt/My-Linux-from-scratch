@@ -53,7 +53,7 @@ conversion library for both kinds of applications.
 
 %build
 %set_build_flags_with_rpath
-%_configure --disable-static
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 

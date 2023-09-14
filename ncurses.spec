@@ -106,7 +106,7 @@ The ncurses-static package includes static libraries of the ncurses library.
 %setup -q -n %{system_name}-%{version}
 
 for f in ANNOUNCE; do
-    iconv -f iso8859-1 -t utf8 -o ${f}{_,} &&
+    iconv -f iso8859-1 -t utf-8 ${f} >> ${f}_ &&
         touch -r ${f}{,_} && mv -f ${f}{_,}
 done
 

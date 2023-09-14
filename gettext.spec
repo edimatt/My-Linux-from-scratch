@@ -54,7 +54,7 @@ and simple method for internationalizing programs.
 %set_build_flags_with_rpath
 export CFLAGS=$(echo $CFLAGS | sed 's/-Werror=format-security//')
 export CXXFLAGS="$CFLAGS"
-%_configure --disable-static --disable-nls --enable-threads=posix --disable-java
+%_configure --disable-nls --enable-threads=posix --disable-java --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -69,9 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/*
 %_mandir/man1/*.1
-%_docdir/%{system_name}/*
-%_docdir/libasprintf/*
-%_docdir/libtextstyle/*
+%_docdir/%{name}/*
 %_datadir/%{system_name}/*
 %_datadir/%{system_name}-%{version}/*
 %_datadir/emacs/site-lisp/*

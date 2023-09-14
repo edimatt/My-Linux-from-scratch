@@ -25,13 +25,13 @@ AutoReqProv:    no
 
 
 %description
-This library provides interface for terminal emulators such as
+This  library  provides  interface for terminal emulators such as
 screen and xterm to record user sessions to utmp and wtmp files.
 
 
 %description devel
-This package contains the header files and libraries for developing
-with %{system_name}.
+This package contains the header files and libraries for develop‐
+ing with %{system_name}.
 
 
 %prep

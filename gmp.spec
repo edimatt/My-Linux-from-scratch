@@ -53,7 +53,7 @@ need to install the gmp package.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%_configure
 %make_build
 
 
@@ -70,8 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/lib%{system_name}.a
-%_libdir/lib%{system_name}.la
 %_libdir/lib%{system_name}.so.10
 %_libdir/lib%{system_name}.so.10.5.0
 
@@ -79,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %_includedir/%{system_name}.h
 %_libdir/lib%{system_name}.so
+%_libdir/lib%{system_name}.la
 %_libdir/pkgconfig/%{system_name}.pc
 %_infodir/%{system_name}.info*
 %ghost %{_infodir}/dir

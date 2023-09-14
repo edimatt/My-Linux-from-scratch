@@ -26,7 +26,7 @@ files compliant with the GNU Coding Standards.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/%{system_name}-1.16/*
 %_datadir/aclocal-1.16/*
 %_datadir/aclocal/README
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 %ghost %_infodir/dir
 %_infodir/%{system_name}*
 %_mandir/man1/auto*.1

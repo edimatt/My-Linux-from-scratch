@@ -31,7 +31,7 @@ well‐integrated with GNU Emacs.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/*info*
 %_datadir/locale/*/LC_MESSAGES/%{system_name}*.mo
 %_datadir/%{system_name}/*
+%_libdir/%{system_name}/*
 %ghost %_infodir/dir
 %_infodir/texi*
 %_infodir/info*

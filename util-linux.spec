@@ -37,7 +37,7 @@ util-linux is a random collection of Linux utilities
 
 
 %build
-%_configure --disable-makeinstall-chown --disable-static
+%_configure --disable-makeinstall-chown --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 %_sbindir/*
 %_datadir/locale/*/LC_MESSAGES/%{system_name}.mo
 %_datadir/bash-completion/completions/*
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 %_libdir/lib*.so.1*
 
 

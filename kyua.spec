@@ -44,7 +44,7 @@ executed through Kyua.
 
 %build
 %set_build_flags_with_rpath
-%_configure
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 

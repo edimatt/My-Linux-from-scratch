@@ -47,7 +47,7 @@ and for manipulating C strings according to the Unicode standard.
 
 %build
 %set_build_flags_with_rpath
-%_configure --disable-static
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %_infodir/%{system_name}.info
 %_libdir/%{system_name}*.so
 %_libdir/%{system_name}*.la
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo

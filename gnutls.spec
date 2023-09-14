@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://gnutls.org
 Source0:        %{system_name}-%{version}.tar.xz
 AutoReqProv:    no
-BuildRequires:  glibc-devel
-Requires:       glibc
+BuildRequires:  glibc-devel EDOlibunistring-devel EDOgmp-devel EDOlibffi-devel EDOlibiconv-devel EDOlibtasn1-devel EDOnettle-devel EDOp11-kit-devel EDOzlib-devel EDOzstd-devel
+Requires:       glibc EDOlibunistring EDOgmp EDOlibffi EDOlibiconv EDOlibtasn1 EDOnettle EDOp11-kit EDOzlib EDOzstd
 Provides:       %{name} = %{version}
 
 
@@ -42,7 +42,7 @@ structures.
 
 %build
 %set_build_flags_with_rpath
-%_configure  
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %_mandir/man3/*
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 %_includedir/%{system_name}/*
 %_libdir/lib%{system_name}*.so
 %_libdir/lib%{system_name}*.la

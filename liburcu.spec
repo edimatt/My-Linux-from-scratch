@@ -43,7 +43,7 @@ reclamation is possible.
 
 %build
 %set_build_flags_with_rpath
-%_configure --build=%_build
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -60,7 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_libdir/%{system_name}*.so.8*
-%_libdir/%{system_name}*.a
 
 
 %files devel
@@ -68,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/%{system_name}*.so
 %_libdir/%{system_name}*.la
 %_libdir/pkgconfig/%{system_name}*.pc
-%_docdir/userspace-rcu/*
+%_docdir/%{name}/*
 
 
 %changelog

@@ -39,7 +39,7 @@ rm src/elf.h
 
 %build
 %set_build_flags_with_rpath
-%_configure
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -51,7 +51,6 @@ make check
 %make_install
 
 mkdir -p %{buildroot}%{_docdir}/%{name}
-mv %{buildroot}%{_docdir}/%{system_name}/README.md %{buildroot}%{_docdir}/%{name}/
 
 
 %files

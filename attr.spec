@@ -66,7 +66,7 @@ devel, you’ll also want to install attr.
 
 %build
 %set_build_flags_with_rpath
-%configure --disable-static
+%configure --docdir=%_docdir/%{name}
 %make_build
 
 

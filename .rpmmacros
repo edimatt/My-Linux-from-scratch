@@ -3,7 +3,6 @@
 %_vendor edo
 %_prefix /opt/%{_vendor}
 %_sysconfdir /etc%_prefix
-%_docdir %_datadir/doc
 %_libexecdir %_libdir
 
 %__scm_usermail <edoardo.dinatteo@gmail.com>
@@ -28,7 +27,7 @@
     export CXXFLAGS="$CFLAGS" \
     export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir"
 
-%_configure ./configure --build=%_build --host=%_host --program-prefix=%{?_program_prefix} --disable-dependency-tracking %{?_configure_disable_silent_rules:--disable-silent-rules} --prefix=%{_prefix} --exec-prefix=%{_exec_prefix} --bindir=%{_bindir} --sbindir=%{_sbindir} --sysconfdir=%{_sysconfdir} --datadir=%{_datadir} --includedir=%{_includedir} --libdir=%{_libdir} --libexecdir=%{_libexecdir} --localstatedir=%{_localstatedir} --sharedstatedir=%{_sharedstatedir} --mandir=%{_mandir} --infodir=%{_infodir} --docdir=%{_docdir}/%{name} --disable-static
+%_configure ./configure --build=%_build --host=%_host --program-prefix=%{?_program_prefix} --disable-dependency-tracking %{?_configure_disable_silent_rules:--disable-silent-rules} --prefix=%{_prefix} --exec-prefix=%{_exec_prefix} --bindir=%{_bindir} --sbindir=%{_sbindir} --sysconfdir=%{_sysconfdir} --datadir=%{_datadir} --includedir=%{_includedir} --libdir=%{_libdir} --libexecdir=%{_libexecdir} --localstatedir=%{_localstatedir} --sharedstatedir=%{_sharedstatedir} --mandir=%{_mandir} --infodir=%{_infodir} --disable-static
 
 %_prev_configure .%{_configure}
 

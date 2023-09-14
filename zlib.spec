@@ -51,7 +51,7 @@ library.
 
 %build
 %set_build_flags_with_rpath
-%_configure --prefix=%_prefix --libdir=%_libdir
+./configure --prefix=%_prefix --libdir=%_libdir --64
 %make_build
 
 

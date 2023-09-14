@@ -117,7 +117,7 @@ cd ..
 
 %build
 %set_build_flags_with_rpath
-%configure --with-readline --with-compat-module
+%_configure --with-readline --with-compat-module --enable-static
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 # Autotools give me a headache sometimes.
@@ -130,7 +130,7 @@ make %{?_smp_mflags} LIBS="-lm -ldl"
 
 %if 0%{?bootstrap}
 pushd lua-%{bootstrap_version}
-%configure --with-readline --with-compat-module
+%configure --with-readline --with-compat-module --enable-static
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 # Autotools give me a headache sometimes.

@@ -48,7 +48,7 @@ package. You will also need to install the %{system_name} package.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -65,17 +65,16 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/lib%{system_name}.a
-%_libdir/lib%{system_name}.la
 %_libdir/lib%{system_name}.so.6
 %_libdir/lib%{system_name}.so.6.2.0
 
 
 %files devel
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 %_includedir/%{system_name}.h
 %_includedir/mpf2%{system_name}.h
 %_libdir/lib%{system_name}.so
+%_libdir/lib%{system_name}.la
 %_libdir/pkgconfig/%{system_name}.pc
 %_infodir/%{system_name}.info*
 %ghost %{_infodir}/dir

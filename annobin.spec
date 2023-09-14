@@ -29,7 +29,7 @@ Provides:       %{name} = %{version}
 # Uncomment the below only if annobin is not yet installed for the current compiler.
 # export CFLAGS="$(echo $CFLAGS | sed -e 's/-Werror=format-security//g' -e 's_-specs=/usr/lib/rpm/redhat/redhat-annobin-cc1__g')"
 # export CXXFLAGS="$CFLAGS"
-%configure
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -46,6 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc annotation.proposal.txt COPYING3 LICENSE
 %_bindir/annocheck
 %_includedir/libannocheck.h
 %_libdir/gcc/%{_build}/13.2.0/plugin/*%{system_name}.so
@@ -56,9 +57,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/libannocheck.so.0
 %_libdir/libannocheck.so.0.0.0
 %_libdir/pkgconfig/libannocheck.pc
-%_docdir/%{system_name}-plugin/COPYING3
-%_docdir/%{system_name}-plugin/LICENSE
-%_docdir/%{system_name}-plugin/annotation.proposal.txt
 %_infodir/%{system_name}.info
 %ghost %_infodir/dir
 %_mandir/man1/%{system_name}.1

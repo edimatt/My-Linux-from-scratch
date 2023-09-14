@@ -38,7 +38,7 @@ of choice.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -57,13 +57,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc AUTHORS COPYING NEWS README
 %_bindir/%{system_name}-sh
 %_libdir/lib%{system_name}*
 %_libdir/pkgconfig/%{system_name}-*
 %_libexecdir/%{system_name}-check
 %_datadir/aclocal/%{system_name}-*.m4
 %_datadir/%{system_name}/*
-%_docdir/%{system_name}/*
 %_mandir/man*/%{system_name}*.*
 %_includedir/%{system_name}-c*
 

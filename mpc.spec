@@ -56,8 +56,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/lib%{system_name}.a
-%_libdir/lib%{system_name}.la
 %_libdir/lib%{system_name}.so.3
 %_libdir/lib%{system_name}.so.3.3.1
 
@@ -65,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %_includedir/%{system_name}.h
 %_libdir/lib%{system_name}.so
-# %_libdir/pkgconfig/%{system_name}.pc
+%_libdir/lib%{system_name}.la
 %_infodir/%{system_name}.info*
 %ghost %{_infodir}/dir
 

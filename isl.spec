@@ -45,7 +45,7 @@ GMP library.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%_configure
 %make_build
 
 
@@ -62,8 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_libdir/lib%{system_name}.a
-%_libdir/lib%{system_name}.la
 %_libdir/lib%{system_name}.so.23
 %_libdir/lib%{system_name}.so.23.1.0
 
@@ -71,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %_includedir/%{system_name}/*
 %_libdir/lib%{system_name}.so
+%_libdir/lib%{system_name}.la
 %_libdir/pkgconfig/%{system_name}.pc
 %_libdir/lib%{system_name}.so.23.1.0-gdb.py
 

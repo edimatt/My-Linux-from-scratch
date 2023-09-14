@@ -54,7 +54,7 @@ defined in POSIX 1003.1e draft standard 17.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%_configure --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -71,9 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_docdir/%{system_name}/CHANGES
-%_docdir/%{system_name}/COPYING
-%_docdir/%{system_name}/COPYING.LGPL
+%doc CHANGES COPYING COPYING.LGPL
 %_bindir/chacl
 %_bindir/getfacl
 %_bindir/setfacl
@@ -92,11 +90,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files libs
-%_docdir/%{system_name}/libacl.txt
-%_docdir/%{system_name}/PORTING
-%_docdir/%{system_name}/extensions.txt
-%_libdir/lib%{system_name}.a
-%_libdir/lib%{system_name}.la
+%_docdir/%{name}/libacl.txt
+%_docdir/%{name}/PORTING
+%_docdir/%{name}/extensions.txt
 %_libdir/lib%{system_name}.so.1
 %_libdir/lib%{system_name}.so.1.1.2301
 
@@ -106,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %_includedir/sys/%{system_name}.h
 %_libdir/pkgconfig/lib%{system_name}.pc
 %_libdir/lib%{system_name}.so
+%_libdir/lib%{system_name}.la
 %_mandir/man3/%{system_name}_*
 
 

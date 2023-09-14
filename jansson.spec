@@ -66,7 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_libdir/lib%{system_name}.so.4*
-%_libdir/lib%{system_name}.a
 
 
 %files devel

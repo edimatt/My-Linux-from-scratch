@@ -54,7 +54,7 @@ improved since the fork.
             --enable-pcre2grep-libz             \
             --enable-pcre2grep-libbz2           \
             --enable-pcre2test-libreadline      \
-            --disable-static           
+            --docdir=%_docdir/%{name}
 %make_build
 
 
@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/%{system_name}-config*
 %_mandir/man1/%{system_name}-config.1
 %_mandir/man3/%{system_name}*.3
-%_docdir/%{system_name}/*
+%_docdir/%{name}/*
 %_includedir/%{system_name}*.h
 %_libdir/lib%{system_name}-*.so
 %_libdir/lib%{system_name}-*.la
