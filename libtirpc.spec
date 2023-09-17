@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://sourceforge.net/projects/libtirpc
 Source0:        %{system_name}-%{version}.tar.bz2
 AutoReqProv:    no
-BuildRequires:  glibc-devel 
-Requires:       glibc
+BuildRequires:  glibc-devel EDOkrb5-devel
+Requires:       glibc EDOkrb5
 Provides:       %{name} = %{version}
 
 
@@ -39,9 +39,7 @@ RPC, but not the NIS library entries that used to be in glibc.
 
 %build
 %set_build_flags_with_rpath
-%_configure --sysconfdir=%_sysconfdir  \
-            --disable-static           \
-            --disable-gssapi
+%_configure --sysconfdir=%_sysconfdir
 %make_build
 
 
