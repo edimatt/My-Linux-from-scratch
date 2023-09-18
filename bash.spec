@@ -38,7 +38,7 @@ The improvements offered by Bash include:
 
 %build
 %set_build_flags_with_rpath
-%_configure --without-bash-malloc --docdir=%_docdir/%{name}
+%_configure --enable-readline --enable-threads=posix --enable-profiling --enable-select --enable-progcomp --enable-multibyte --enable-job-control --enable-history --enable-help-builtin --enable-directory-stack --enable-dparen-arithmetic --enable-extended-glob --enable-cond-command --enable-cond-regexp --enable-coprocesses --enable-debugger --enable-array-variables --enable-alias --enable-brace-expansion --enable-casemod-attributes --enable-casemod-expansions --without-bash-malloc --docdir=%_docdir/%{name}
 %make_build
 
 
