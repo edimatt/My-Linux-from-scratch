@@ -14,22 +14,17 @@ Requires:       glibc EDOncurses-libs EDOlibiconv
 AutoReqProv:    no
 
 %description
-Bash  is  the GNU Project’s shellâthe Bourne Again SHell. This is
-an sh‐compatible shell that incorporates useful features from the
-Korn shell (ksh) and the C shell (csh). It is intended to conform
-to the IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard. It
-offers  functional  improvements over sh for both programming and
-interactive use. In addition, most sh scripts can be run by  Bash
-without modification.
-
-The improvements offered by Bash include:
-
-    command‐line editing,
-    unlimited size command history,
-    job control,
-    shell functions and aliases,
-    indexed arrays of unlimited size,
-    integer arithmetic in any base from two to sixty‐four.
+Bash   is   the GNU Projectâs shellÃ¢the Bourne Again SHell. This
+is an shâcompatible shell that incorporates useful features  from
+the  Korn  shell  (ksh)  and the C shell (csh). It is intended to
+conform to the IEEE POSIX  P1003.2/ISO  9945.2  Shell  and  Tools
+standard.  It  offers   functional  improvements over sh for both
+programming and interactive use. In addition, most sh scripts can
+be  run  by  Bash without modification.  The improvements offered
+by Bash include: commandâline  editing,  unlimited  size  command
+history, job control, shell functions and aliases, indexed arrays
+of unlimited size, integer arithmetic in any  base  from  two  to
+sixtyâfour.
 
 
 %prep
@@ -38,7 +33,29 @@ The improvements offered by Bash include:
 
 %build
 %set_build_flags_with_rpath
-%_configure --enable-readline --enable-threads=posix --enable-profiling --enable-select --enable-progcomp --enable-multibyte --enable-job-control --enable-history --enable-help-builtin --enable-directory-stack --enable-dparen-arithmetic --enable-extended-glob --enable-cond-command --enable-cond-regexp --enable-coprocesses --enable-debugger --enable-array-variables --enable-alias --enable-brace-expansion --enable-casemod-attributes --enable-casemod-expansions --without-bash-malloc --docdir=%_docdir/%{name}
+%_configure --enable-readline           \
+            --enable-threads=posix      \
+            --enable-profiling          \
+            --enable-select             \
+            --enable-progcomp           \
+            --enable-multibyte          \
+            --enable-job-control        \
+            --enable-history            \
+            --enable-help-builtin       \
+            --enable-directory-stack    \
+            --enable-dparen-arithmetic  \
+            --enable-extended-glob      \
+            --enable-cond-command       \
+            --enable-cond-regexp        \
+            --enable-coprocesses        \
+            --enable-debugger           \
+            --enable-array-variables    \
+            --enable-alias              \
+            --enable-brace-expansion    \
+            --enable-casemod-attributes \
+            --enable-casemod-expansions \
+            --without-bash-malloc       \
+            --docdir=%_docdir/%{name}
 %make_build
 
 
