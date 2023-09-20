@@ -3,6 +3,7 @@
 %_vendor edo
 %_prefix /opt/%{_vendor}
 %_sysconfdir /etc%_prefix
+%_localstatedir /var%_prefix
 %_libexecdir %_libdir
 
 %__scm_usermail <edoardo.dinatteo@gmail.com>
