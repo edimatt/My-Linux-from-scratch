@@ -24,7 +24,7 @@
     export CC=%_bindir/gcc \
     export CXX=%_bindir/g++ \
     export CPPFLAGS="-I%_includedir" \
-    export CFLAGS="%(echo %optflags -I%_includedir -Wl,-L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir | sed -e 's/-O[0-9]* */-O3 /g')" \
+    export CFLAGS="%(echo %optflags -I%_includedir -Wl,-L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir | sed -e 's/-O[0-9]* */-O3 /g' -e 's/-pipe //')" \
     export CXXFLAGS="$CFLAGS" \
     export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir"
 
@@ -32,10 +32,22 @@
 
 %_prev_configure .%{_configure}
 
-%meson_setup meson setup _build -Dprefix=%_prefix -Dc_args="$CFLAGS" -Dcpp_args="$CXXFLAGS" -Dc_link_args="$LDFLAGS" -Dsysconfdir=%_sysconfdir
+%meson_setup meson setup _build -Dprefix=%_prefix -Dc_args="$CFLAGS" -Dcpp_args="$CXXFLAGS" -Dc_link_args="$LDFLAGS" -Dsysconfdir=%_sysconfdir -Dlocalstatedir=%_localstatedir -Dlibexecdir=%_libdir
 %meson_build meson compile -C _build
 %meson_install meson install -C _build --destdir=%{buildroot}
 %meson_test meson test -C _build
+%ninja_build ninja -C _build
+%ninja_install DESTDIR=%{buildroot} %ninja_build install
+
 
 %system_autoreconf /usr/bin/autoreconf -f -i -Wall,no-obsolete
 %autoreconf %_bindir/autoreconf -f -i -Wall,no-obsolete
+
+%__python3 %{_bindir}/python3
+%pip_install \
+    %__python3 -m venv _build \
+    source _build/bin/activate \
+    pip install --root=%{buildroot} --prefix=%{_prefix} --ignore-installed . \
+    %{__mv} %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64 \
+    pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/* %{buildroot}%{_libdir} \
+    deactivate
