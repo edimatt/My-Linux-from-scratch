@@ -44,10 +44,7 @@
 %autoreconf %_bindir/autoreconf -f -i -Wall,no-obsolete
 
 %__python3 %{_bindir}/python3
-%pip_install \
-    %__python3 -m venv _build \
-    source _build/bin/activate \
-    pip install --root=%{buildroot} --prefix=%{_prefix} --ignore-installed . \
+%pip_install %{?isolated_build:%__python3 -m venv _build;source _build/bin/activate} \
+    pip install --root=%{buildroot} --prefix=%{_prefix} --no-deps --ignore-installed . \
     %{__mv} %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64 \
-    pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/* %{buildroot}%{_libdir} \
-    deactivate
+    %{?isolated_build:pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/* %{buildroot}%{_libdir};deactivate}

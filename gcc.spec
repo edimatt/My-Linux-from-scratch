@@ -1,5 +1,7 @@
 %global debug_package %{nil}
+%global optflags %(echo %{optflags} | sed -e 's/-Werror=[a-z\-]* //' -e 's/-specs=[\/a-z][\/a-z0-9-]* //g' -e 's/-m[a-z0-9=-]* //g' -e 's/-flto=auto -ffat-lto-objects //')
 %define _build_id_links none
+%define __brp_strip_lto %{nil}
 %define system_name gcc
 %define _build x86_64-edo-linux-gnu
 %define _host x86_64-edo-linux-gnu
@@ -39,16 +41,18 @@ runtime dependeny to libiconv!
 
 
 %prep
-%setup -n %{system_name}-%{version}
-./contrib/download_prerequisites 
+if rpm -q EDOlibiconv-devel; then
+    echo "Remove libiconv devel before building gcc."
+    exit 1
+fi
+%setup -q -n %{system_name}-%{version}
+# ./contrib/download_prerequisites 
 
 
 %build
 %set_build_flags_with_rpath
-export CFLAGS="-O3 -m64 -g -Wall"
-export CXXFLAGS="$CFLAGS"
 mkdir gcc-objdir && cd gcc-objdir
-%_prev_configure --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-mpc=%_prefix --enable-languages=c,c++,fortran --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --disable-bootstrap
+%_prev_configure --with-local-prefix=%_prefix --with-gpm=%_prefix --with-mpfr=%_prefix --with-mpc=%_prefix --with-isl=%_prefix --enable-languages=c,c++,jit,fortran --enable-host-shared --enable-threads=posix --enable-multilib --enable-lto --enable-host-shared --enable-shared --disable-bootstrap
 %make_build
 
 
@@ -82,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/libsanitizer*
 %_bindir/*
 %_includedir/c++/%{version}/*
+%_includedir/libgccjit*.h
 %ghost %_infodir/dir
 %_infodir/*.info
 %_mandir/man*/*
