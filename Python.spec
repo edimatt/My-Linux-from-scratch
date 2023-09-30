@@ -1,6 +1,6 @@
 %global debug_package %{nil}
 %define _build_id_links none
-%define python_micro 5
+%define python_micro 4
 %define system_name python
 
 Name:           EDO%{system_name}
@@ -10,14 +10,14 @@ Summary:        python
 License:        GPL
 URL:            www.python.org
 Source0:        Python-%{version}.%{python_micro}.tar.xz
-BuildRequires:  EDOexpat-devel EDObzip2-devel openssl-devel libxcrypt-devel glibc-devel EDOlibffi-devel EDOxz-devel EDOncurses-devel EDOreadline-devel EDOsqlite-devel EDOzlib-devel EDOlibuuid-devel EDOgdbm-devel /usr/bin/pathfix.py
+BuildRequires:  EDOexpat-devel EDObzip2-devel EDOopenssl-devel EDOlibxcrypt-devel glibc-devel EDOlibffi-devel EDOxz-devel EDOncurses-devel EDOreadline-devel EDOsqlite-devel EDOzlib-devel EDOlibuuid-devel EDOgdbm-devel EDOtcl-devel EDOtk-devel /usr/bin/pathfix.py
 Requires:       %{name}-libs = %{version}
 Provides:       %{name} = %{version}
 AutoReqProv:    no
 
 %package libs
 Summary:        Shared libraries.
-Requires:       EDObzip2-libs openssl-libs libxcrypt glibc EDOlibffi EDOxz-libs EDOncurses-libs EDOncurses-libs EDOreadline EDOsqlite-libs EDOzlib EDOexpat EDOlibuuid EDOgdbm
+Requires:       EDObzip2-libs EDOopenssl-libs EDOlibxcrypt glibc EDOlibffi EDOxz-libs EDOncurses-libs EDOncurses-libs EDOreadline EDOsqlite-libs EDOzlib EDOexpat EDOlibuuid EDOgdbm EDOtcl EDOtk
 Provides:       %{name}-libs = %{version}
 AutoReqProv:    no
 
@@ -41,19 +41,25 @@ AutoReqProv:    no
 
 %build
 %set_build_flags_with_rpath
-%_configure --enable-shared            \
+mkdir _build && cd _build
+export BZIP2_LIBS="-L/opt/edo/lib64 -lbz2"
+%_prev_configure --enable-shared            \
            --with-platlibdir=%{_lib}   \
+           --enable-loadable-sqlite-extensions \
            --with-system-expat         \
            --with-system-ffi           \
+           --with-lto=yes              \
            --enable-optimizations      \
            --without-static-libpython  \
-           --disable-test-modules      \
+           --with-system-libmpdec      \
+           --with-ssl-default-suites=openssl \
+           --with-openssl=%_prefix \
            --with-ensurepip=no
 %make_build
 
 
 %install
-%{make_install}
+cd _build && %{make_install}
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_libdir/%{system_name}%{version}/*
 
 
