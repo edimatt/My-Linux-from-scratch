@@ -9,8 +9,8 @@ Summary:        Miscellaneous utilities that use the proc file-system.
 License:        GPL
 URL:            https://gitlab.com/psmisc/psmisc
 Source:         %{system_name}-v%{version}.tar.gz
-BuildRequires:  rpm-build glibc-devel
-Requires:       glibc
+BuildRequires:  rpm-build glibc-devel EDOncurses-devel
+Requires:       glibc EDOncurses-libs
 AutoReqProv:    no
 
 

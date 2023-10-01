@@ -9,8 +9,8 @@ Summary:        A perfect hash function generator.
 License:        GPL
 URL:            https://www.gnu.org/software/gperf
 Source:         %{system_name}-%{version}.tar.gz
-BuildRequires:  rpm-build glibc-devel
-Requires:       glibc
+BuildRequires:  rpm-build glibc-devel EDOgcc
+Requires:       glibc EDOgcc
 AutoReqProv:    no
 
 
@@ -40,6 +40,10 @@ gperf.
 
 %install
 %make_install
+
+
+%check
+make check
 
 
 %clean
