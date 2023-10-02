@@ -16,6 +16,8 @@
 
 %_build x86_64-edo-linux-gnu
 %_host x86_64-edo-linux-gnu
+# Increase opt level to O3 and remove -pipe
+%_general_options -O3 %{?_lto_cflags} -fexceptions -g -grecord-gcc-switches
 
 %set_build_flags_with_rpath \
     export PATH="%_bindir:%_sbindir:$PATH" \
@@ -24,7 +26,7 @@
     export CC=%_bindir/gcc \
     export CXX=%_bindir/g++ \
     export CPPFLAGS="-I%_includedir" \
-    export CFLAGS="%(echo %optflags -I%_includedir -Wl,-L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir | sed -e 's/-O[0-9]* */-O3 /g' -e 's/-pipe //')" \
+    export CFLAGS="%(echo %optflags -I%_includedir -Wl,-L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir)" \
     export CXXFLAGS="$CFLAGS" \
     export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=\$ORIGIN/../%_lib:%_libdir"
 

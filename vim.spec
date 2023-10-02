@@ -1,18 +1,19 @@
 %global debug_package %{nil}
+%global _preprocessor_defines %{nil}
 %define _build_id_links none
 %define system_name vim
 
 Name:           EDO%{system_name}
-Version:        9.0.1258
+Version:        9.0.1968
 Release:        1%{?dist}
 Summary:        vim text editor.
 License:        GPL
 Vendor:         %{_vendor}
 URL:            https://github.com/vim/vim
-Source0:        %{system_name}-%{version}.tar.gz
+Source0:        %{system_name}-%{version}.tar.xz
 AutoReqProv:    no
-BuildRequires:  glibc-devel EDOncurses-devel EDOpcre2-devel EDOattr-devel EDOacl-devel /usr/bin/pathfix.py 
-Requires:       glibc EDOncurses-libs libselinux EDOacl-libs EDOpcre2 EDOattr-libs
+BuildRequires:  glibc-devel EDOncurses-devel EDOpcre2-devel EDOattr-devel EDOacl-devel EDOlua-devel EDOperl EDOpython-devel EDOtcl-devel EDOutil-linux-devel EDOlibxcrypt-devel EDOzlib-devel /usr/bin/pathfix.py 
+Requires:       glibc libSM libICE libXt libX11 libXau glibc libxcb EDOncurses-libs libselinux EDOacl-libs EDOlua-libs EDOperl glibc EDOpython-libs EDOtcl EDOutil-linux EDOpcre2 EDOattr-libs EDOlibxcrypt EDOzlib
 Provides:       %{name} = %{version}
 
 %description
@@ -33,14 +34,12 @@ er, and the mouse can be used.
 
 
 %prep
-%setup -n %{system_name}-%{version}
+%setup -q -n %{system_name}-%{version}
 
 
 %build
 %set_build_flags_with_rpath
-export CFLAGS="$(echo $CFLAGS | sed -e 's/-Wp,-D_FORTIFY_SOURCE=[0-9]//g')"
-export CXXFLAGS="$CFLAGS"
-%_configure
+%_configure --enable-luainterp=yes --with-lua-prefix=%_prefix --enable-perlinterp=yes --enable-python3interp=yes --enable-tclinterp=yes --enable-multibyte
 %make_build
 
 
