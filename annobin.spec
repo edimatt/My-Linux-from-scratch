@@ -35,10 +35,12 @@ Provides:       %{name} = %{version}
 
 %install
 %make_install
-cd %{buildroot}%{_libdir}/gcc/%{_build}/13.2.0/plugin
+cp doc/annotation.proposal.txt .
+pushd %{buildroot}%{_libdir}/gcc/%{_build}/13.2.0/plugin
 cp %{system_name}.so.0.0.0 gcc-%{system_name}.so.0.0.0
 ln -s gcc-%{system_name}.so.0.0.0 gcc-%{system_name}.so.0
 ln -s gcc-%{system_name}.so.0.0.0 gcc-%{system_name}.so
+popd
 
 
 %clean
@@ -46,7 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%doc annotation.proposal.txt COPYING3 LICENSE
+%doc COPYING3 LICENSE README.md annotation.proposal.txt
 %_bindir/annocheck
 %_includedir/libannocheck.h
 %_libdir/gcc/%{_build}/13.2.0/plugin/*%{system_name}.so

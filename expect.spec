@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global optflags %(echo %{optflags} | sed -e 's/-Werror=[a-z\-]* //')
+%global _warning_options %{nil}
 %define _build_id_links none
 %define system_name expect
 
