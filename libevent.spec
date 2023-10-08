@@ -3,17 +3,16 @@
 %define system_name libevent
 
 Name:           EDO%{system_name}
-Version:        2.1.12
+Version:        2.2.1
 Release:        1%{?dist}
 Summary:        Abstract asynchronous event notification library.
 License:        GPL
 Vendor:         %{_vendor}
 URL:            https://libevent.org
-Source0:        %{system_name}-%{version}-stable.tar.gz
-Patch0:         %{system_name}-%{version}-event_rpcgen.patch
+Source0:        %{system_name}-%{version}.tar.xz
 AutoReqProv:    no
-BuildRequires:  glibc-devel
-Requires:       glibc
+BuildRequires:  glibc-devel EDOopenssl-devel
+Requires:       glibc EDOopenssl-libs
 Provides:       %{name} = %{version}
 
 
@@ -41,14 +40,13 @@ with %{system_name}.
 
 
 %prep
-%setup -n %{system_name}-%{version}-stable
-%patch0 -p1
+%setup -q -n %{system_name}-%{version}
 ./autogen.sh
 
 
 %build
 %set_build_flags_with_rpath
-%configure --enable-static=no --disable-openssl
+%configure --enable-static=no 
 %make_build
 
 
@@ -58,6 +56,7 @@ make check
 
 %install
 %make_install prefix=%_prefix libdir=%_libdir
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/*
 
 
 %clean
