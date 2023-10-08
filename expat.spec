@@ -10,7 +10,6 @@ License:        GPL
 Vendor:         %{_vendor}
 URL:            https://github.com/libexpat/libexpat
 Source0:        %{system_name}-%{version}.tar.xz
-Patch0:         %{system_name}-%{version}-fix-tests.patch
 AutoReqProv:    no
 BuildRequires:  glibc-devel
 Requires:       glibc
@@ -58,7 +57,6 @@ documentation to develop XML applications with expat.
 
 %prep
 %setup -q -n %{system_name}-%{version}
-%patch0 -p1
 
 
 %build

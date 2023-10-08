@@ -1,5 +1,4 @@
 %global debug_package %{nil}
-%define __brp_strip_lto %{nil}
 %define _build_id_links none
 %define system_name libb2
 

@@ -1,5 +1,4 @@
 %global debug_package %{nil}
-%define __brp_strip_lto %{nil}
 %define _build_id_links none
 %define system_name mpdecimal
 
@@ -49,7 +48,7 @@ imal module.
 
 %build
 %set_build_flags_with_rpath
-%_configure --enable-shared --enable-profile
+%_configure --enable-shared
 %make_build
 
 

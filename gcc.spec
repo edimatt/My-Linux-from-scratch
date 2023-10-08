@@ -1,10 +1,14 @@
 %global debug_package %{nil}
-%global optflags %(echo %{optflags} | sed -e 's/-Werror=[a-z\-]* //' -e 's/-specs=[\/a-z][\/a-z0-9-]* //g' -e 's/-m[a-z0-9=-]* //g' -e 's/-flto=auto -ffat-lto-objects //')
+%global _annobin_gcc_plugin %{nil}
+# Format security breaks compilation
+%global _warning_options %{nil}
+%global _lto_cflags %{nil}
 %define _build_id_links none
-%define __brp_strip_lto %{nil}
 %define system_name gcc
 %define _build x86_64-edo-linux-gnu
 %define _host x86_64-edo-linux-gnu
+%define _target x86_64-edo-linux-gnu
+%global optflags %(echo %{optflags} | sed -e 's/-m[a-z0-9=-]* //g')
 
 Name:           EDO%{system_name}
 Version:        13.2.0

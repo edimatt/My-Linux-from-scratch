@@ -35,7 +35,6 @@ sixtyâfour.
 %set_build_flags_with_rpath
 %_configure --enable-readline           \
             --enable-threads=posix      \
-            --enable-profiling          \
             --enable-select             \
             --enable-progcomp           \
             --enable-multibyte          \
@@ -82,5 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Oct 08 2023 Edoardo Di Matteo
+- We need to disable profiling, otherwise lots of shell will fail with SIGPROF
 * Thu Jan 26 2023 Edoardo Di Matteo
 - 
