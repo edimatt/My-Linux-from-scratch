@@ -4,7 +4,7 @@
 
 Name:           EDOemacs
 Version:        29.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GNU Emacs text editor.
 
 License:        GPL
@@ -34,8 +34,10 @@ GNU Emacs text editor.
 %install
 %make_install
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 
 %files
 %_bindir/*
@@ -48,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/applications/%{system_name}*
 %_infodir/*
 %_datadir/icons/*
-%_libdir/%{system_name}/%{version}/native-lisp/*
+
 
 %changelog
 * Thu Jan 26 2023 Edoardo Di Matteo
