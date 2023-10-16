@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Terminal multiplexer.
 License:        GPL
 URL:            https://github.com/tmux/tmux
-Source0:        %{system_name}-%{version}.tar.gz
+Source0:        %{system_name}-%{version}.tar.xz
 Provides:       %{name} = %{version}
 BuildRequires:  glibc-devel EDOncurses-devel EDOlibevent-devel EDOlibutempter-devel EDOutf8proc-devel
 Requires:       glibc EDOncurses-libs EDOlibevent EDOlibutempter EDOutf8proc
@@ -26,16 +26,13 @@ Solaris.
 
 
 %prep
-%setup -n %{system_name}-%{version}
+%setup -q -n %{system_name}-%{version}
+./autogen.sh
 
 
 %build
-export O='$$O'
-export ORIGIN='$ORIGIN'
-export CFLAGS="${RPM_OPT_FLAGS} -I%_includedir -DUTF8PROC_EXPORTS"
-export LDFLAGS="$LDFLAGS -L%_libdir -Wl,-rpath=%_libdir:\$ORIGIN/../lib64"
-export LIBS="-lutf8proc"
-%configure --enable-static=no --enable-utempter --enable-utf8proc
+%set_build_flags_with_rpath
+%_configure --enable-utempter -enable-utf8proc
 %make_build
 
 

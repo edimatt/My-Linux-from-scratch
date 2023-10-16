@@ -3,16 +3,17 @@
 %define system_name libevent
 
 Name:           EDO%{system_name}
-Version:        2.2.1
+Version:        2.1.12
 Release:        1%{?dist}
 Summary:        Abstract asynchronous event notification library.
 License:        GPL
 Vendor:         %{_vendor}
 URL:            https://libevent.org
-Source0:        %{system_name}-%{version}.tar.xz
+Source0:        %{system_name}-%{version}-stable.tar.gz
+Patch0:         %{system_name}-%{version}-stable-libdir.patch
 AutoReqProv:    no
-BuildRequires:  glibc-devel EDOopenssl-devel
-Requires:       glibc EDOopenssl-libs
+BuildRequires:  glibc-devel EDOopenssl-devel EDOmbedtls-devel
+Requires:       glibc EDOopenssl-libs EDOmbedtls
 Provides:       %{name} = %{version}
 
 
@@ -40,22 +41,24 @@ with %{system_name}.
 
 
 %prep
-%setup -q -n %{system_name}-%{version}
-./autogen.sh
+%setup -q -n %{system_name}-%{version}-stable
+%patch0 -p1
 
 
 %build
 %set_build_flags_with_rpath
-%configure --enable-static=no 
+mkdir _build && cd _build
+cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=%_prefix -DCMAKE_C_COMPILER=%_bindir/gcc -DCMAKE_CXX_COMPILER=%_bindir/g++ -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" ..
 %make_build
 
 
 %check
-make check
 
 
 %install
+cd _build
 %make_install prefix=%_prefix libdir=%_libdir
+%__mv %{buildroot}%{_prefix}/lib %{buildroot}%{_libdir}
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/*
 
 
@@ -65,14 +68,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_libdir/%{system_name}*.so.*
+%_libdir/%{system_name}*.a
 
 
 %files devel
 %_bindir/event_rpcgen.py
 %_includedir/ev*
 %_libdir/%{system_name}*.so
-%_libdir/%{system_name}*.la
 %_libdir/pkgconfig/%{system_name}*.pc
+%_libdir/cmake/%{system_name}/*.cmake
 
 
 %changelog
