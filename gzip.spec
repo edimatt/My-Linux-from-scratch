@@ -32,6 +32,7 @@ commonly used data compression program.
 
 %install
 %make_install
+%__rm %{buildroot}%{_bindir}/uncompress
 
 
 %clean
@@ -40,7 +41,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/z*
 %_bindir/g*
-%_bindir/uncompress
 %_mandir/man1/g*.1
 %_mandir/man1/z*.1
 %ghost %_infodir/dir

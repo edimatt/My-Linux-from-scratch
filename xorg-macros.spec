@@ -37,6 +37,8 @@ BuildArch:      noarch
 %install
 %make_install
 %{__mkdir_p} %{buildroot}%{_docdir}/%{name}
+%{__mkdir_p} %{buildroot}%{_libdir}/pkgconfig
+%{__mv} %{buildroot}%{_datadir}/pkgconfig/* %{buildroot}%{_libdir}/pkgconfig/
 %{__mv} %{buildroot}%{_datadir}/util-macros/INSTALL %{buildroot}%{_docdir}/%{name}/
 
 
@@ -47,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %doc INSTALL
 %_datadir/aclocal/%{system_name}.m4
-%_datadir/pkgconfig/%{system_name}.pc
+%_libdir/pkgconfig/%{system_name}.pc
 
 
 %changelog

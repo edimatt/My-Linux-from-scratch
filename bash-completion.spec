@@ -35,6 +35,8 @@ them.
 
 %install
 %make_install
+%{__mkdir_p} %{buildroot}%{_libdir}/pkgconfig
+%{__mv} %{buildroot}%{_datadir}/pkgconfig/* %{buildroot}%{_libdir}/pkgconfig/
 
 
 %check
@@ -49,7 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING
 %_datadir/%{system_name}/*
 %_datadir/cmake/%{system_name}/*
-%_datadir/pkgconfig/%{system_name}.pc
+%_libdir/pkgconfig/%{system_name}.pc
 %_sysconfdir/profile.d/bash_completion.sh
 
 

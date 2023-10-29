@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc README
 %_libexecdir/utempter/utempter
 %_libdir/%{system_name}*.so.*
 
