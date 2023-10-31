@@ -9,8 +9,8 @@ Summary:        Random collection of Linux utilities.
 License:        GPL
 URL:            https://github.com/util-linux/util-linux
 Source:         %{system_name}-%{version}.tar.gz
-BuildRequires:  rpm-build
-Requires:       glibc
+BuildRequires:  rpm-build glibc-devel EDOncurses-devel
+Requires:       glibc EDOncurses-libs
 Provides:       %{name} = %{version} EDOlibuuid = %{version} EDOlibblkid = %{version} EDOlibmount = %{version} EDOlibsmartcols = %{version} EDOlibfdisk = %{version}
 AutoReqProv:    no
 
@@ -31,7 +31,7 @@ util-linux is a random collection of Linux utilities
 
 
 %prep
-%setup -n %{system_name}-%{version}
+%setup -q -n %{system_name}-%{version}
 # We use system autoconf 2.69
 ./autogen.sh
 
@@ -54,6 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/bash-completion/completions/*
 %_docdir/%{name}/*
 %_libdir/lib*.so.1*
+%python3_sitearch/libmount/
 
 
 %files devel

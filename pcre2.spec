@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://github.com/PCRE2Project/pcre2
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel EDOzlib-devel bzip2-devel
-Requires:       glibc EDOzlib bzip2-libs
+BuildRequires:  glibc-devel EDOzlib-devel EDObzip2-devel EDOncurses-devel EDOreadline-devel
+Requires:       glibc EDOzlib EDObzip2-libs EDOncurses-libs EDOreadline
 Provides:       %{name} = %{version}
 
 
@@ -43,7 +43,7 @@ improved since the fork.
 
 
 %prep
-%setup -n %{system_name}-%{version}
+%setup -q -n %{system_name}-%{version}
 
 
 %build
@@ -88,8 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 %_includedir/%{system_name}*.h
 %_libdir/lib%{system_name}-*.so
 %_libdir/lib%{system_name}-*.la
-%_libdir/lib%{system_name}-posix.la
-%_libdir/lib%{system_name}-posix.so
 %_libdir/pkgconfig/lib%{system_name}*.pc
 
 
