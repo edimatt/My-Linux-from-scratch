@@ -11,7 +11,7 @@ URL:            https://git.savannah.gnu.org/cgit/screen.git
 Source0:        %{system_name}-%{version}.tar.gz
 Provides:       %{name} = %{version}
 BuildRequires:  glibc-devel EDOncurses-devel EDOlibutempter-devel EDOlibxcrypt-devel
-Requires:       glibc EDOncurses-libs EDOlibutempter EDOutf8proc EDOlibxcrypt
+Requires:       glibc EDOncurses-libs EDOlibutempter EDOlibxcrypt
 AutoReqProv:    no
 
 

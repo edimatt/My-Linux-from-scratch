@@ -11,8 +11,8 @@ Vendor:         %{_vendor}
 URL:            https://ftp.gnu.org/gnu/readline
 Source0:        %{system_name}-%{version}.tar.gz
 AutoReqProv:    no
-BuildRequires:  glibc-devel
-Requires:       glibc
+BuildRequires:  glibc-devel EDOncurses-devel
+Requires:       glibc EDOncurses-libs
 Provides:       %{name} = %{version}
 
 
@@ -47,7 +47,7 @@ installed.
 
 %build
 %set_build_flags_with_rpath
-%configure
+%_configure --enable-multibyte --with-curses
 %make_build
 
 
@@ -65,16 +65,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_docdir/%{system_name}/*
-%_libdir/lib%{system_name}.a
 %_libdir/lib%{system_name}.so.8
 %_libdir/lib%{system_name}.so.8.2
-%_libdir/libhistory.a
 %_libdir/libhistory.so.8
 %_libdir/libhistory.so.8.2
 
 
 %files devel
-%_datadir/%{system_name}/*.c
 %_includedir/%{system_name}/*.h
 %_libdir/lib%{system_name}.so
 %_libdir/libhistory.so
