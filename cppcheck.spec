@@ -36,7 +36,7 @@ visit www.cppchecksolutions.com for more information and purchase
 %build
 %set_build_flags_with_rpath
 mkdir build && cd build
-cmake -DUSE_MATCHCOMPILER=ON -DHAVE_RULES=ON -DCMAKE_INSTALL_PREFIX=%_prefix FILESDIR=%_datadir/%{system_name} -DPCRE_LIBRARY=%_libdir/libpcre.so -DCMAKE_DISABLE_PRECOMPILE_HEADERS=on -DCMAKE_CXX_FLAGS="$CXXFLAGS" CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" HAVE_RULES=yes ..
+cmake -DUSE_MATCHCOMPILER=ON -DHAVE_RULES=ON -DCMAKE_INSTALL_PREFIX=%_prefix -DFILESDIR=%_datadir/%{system_name} -DPCRE_LIBRARY=%_libdir/libpcre.so -DCMAKE_DISABLE_PRECOMPILE_HEADERS=on -DCMAKE_CXX_FLAGS="$CXXFLAGS" -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" ../
 %make_build
 
 
@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_bindir/%{system_name}
-%_datadir/Cppcheck/*
+%_datadir/cppcheck/*
 
 
 %changelog

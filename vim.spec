@@ -4,7 +4,7 @@
 %define system_name vim
 
 Name:           EDO%{system_name}
-Version:        9.0.1968
+Version:        9.1.0516
 Release:        1%{?dist}
 Summary:        vim text editor.
 License:        GPL
@@ -45,7 +45,7 @@ er, and the mouse can be used.
 
 %install
 %make_install
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_datadir/vim/vim90/tools/demoserver.py
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_datadir/vim/vim91/tools/demoserver.py
 
 
 %clean

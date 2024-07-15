@@ -4,7 +4,7 @@
 %define system_name python
 
 Name:           EDO%{system_name}
-Version:        3.11
+Version:        3.12
 Release:        %{python_micro}%{?dist}
 Summary:        python
 License:        GPL
@@ -43,6 +43,7 @@ AutoReqProv:    no
 %set_build_flags_with_rpath
 mkdir _build && cd _build
 export BZIP2_LIBS="-L/opt/edo/lib64 -lbz2"
+export LIBREADLINE_LIBS="-L/opt/edo/lib64 -lreadline -ltinfo"
 %_prev_configure --enable-shared            \
            --with-platlibdir=%{_lib}   \
            --enable-loadable-sqlite-extensions \
@@ -54,6 +55,7 @@ export BZIP2_LIBS="-L/opt/edo/lib64 -lbz2"
            --with-system-libmpdec      \
            --with-ssl-default-suites=openssl \
            --with-openssl=%_prefix \
+           --with-readline=readline \
            --with-ensurepip=no
 %make_build
 
