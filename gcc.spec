@@ -11,7 +11,7 @@
 %global optflags %(echo %{optflags} | sed -e 's/-m[a-z0-9=-]* //g')
 
 Name:           EDO%{system_name}
-Version:        13.2.0
+Version:        14.1.0
 Release:        1%{?dist}
 Summary:        GNU compiler collection.
 License:        GPL
@@ -111,6 +111,18 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jul 23 2024 Edoardo Di Matteo - 14.1.0
+- Upgrade to gcc 14.1. NOTES:
+- On the first pass, disable multilib, enable bootstrap, uncomment
+- the ./contrib/download_prerequisites script and remove the four
+- with-mpc,gpm,mpfr,isl from configure. Also comment the %_prefix/lib
+- entries from %files. Then, run
+- patchelf $ORIGIN/../lib64:/opt/edo/lib64 `which gcc`
+- patchelf $ORIGIN/../lib64:/opt/edo/lib64 `which g++`
+- Next, recompile and install in the order: annobin (important!), binutils,
+- gpm, mpc, mpfr, isl and coreutils. Finally, do the second pass compilation
+- reverting the changes (re-enabling multilib, disabling bootstrap,
+- commenting download_prerequisites and re-adding the with-mpc,gpm,mpfr,isl
+- in configure and the %_prefix/lib in %files)
 * Thu Jan 26 2023 Edoardo Di Matteo
 -
-

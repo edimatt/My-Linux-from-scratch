@@ -6,7 +6,7 @@
 
 Name:           EDO%{system_name}
 Version:        12.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Annobin gcc plugin.
 License:        GPL
 Vendor:         %{_vendor}
@@ -36,7 +36,7 @@ Provides:       %{name} = %{version}
 %install
 %make_install
 cp doc/annotation.proposal.txt .
-pushd %{buildroot}%{_libdir}/gcc/%{_build}/13.2.0/plugin
+pushd %{buildroot}%{_libdir}/gcc/%{_build}/14.1.0/plugin
 cp %{system_name}.so.0.0.0 gcc-%{system_name}.so.0.0.0
 ln -s gcc-%{system_name}.so.0.0.0 gcc-%{system_name}.so.0
 ln -s gcc-%{system_name}.so.0.0.0 gcc-%{system_name}.so
@@ -51,9 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING3 LICENSE README.md annotation.proposal.txt
 %_bindir/annocheck
 %_includedir/libannocheck.h
-%_libdir/gcc/%{_build}/13.2.0/plugin/*%{system_name}.so
-%_libdir/gcc/%{_build}/13.2.0/plugin/*%{system_name}.so.0
-%_libdir/gcc/%{_build}/13.2.0/plugin/*%{system_name}.so.0.0.0
+%_libdir/gcc/%{_build}/14.1.0/plugin/*%{system_name}.so
+%_libdir/gcc/%{_build}/14.1.0/plugin/*%{system_name}.so.0
+%_libdir/gcc/%{_build}/14.1.0/plugin/*%{system_name}.so.0.0.0
 %_libdir/libannocheck.la
 %_libdir/libannocheck.so
 %_libdir/libannocheck.so.0

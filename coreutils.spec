@@ -5,7 +5,7 @@
 %define system_name coreutils
 
 Name:           EDO%{system_name}
-Version:        9.4
+Version:        9.5
 Release:        1%{?dist}
 Summary:        A GNU collection of binary utilities.
 License:        GPL
