@@ -11,10 +11,22 @@ URL:            https://github.com/gabime/spdlog
 Source:         %{system_name}-%{version}.tar.gz
 BuildRequires:  rpm-build glibc-devel EDOgcc
 Requires:       glibc EDOgcc
+Provides:       %{name} = %{version}
+AutoReqProv:    no
+
+
+%package devel
+Summary:        Development tools for the %{system_name} library.
+Requires:       %{name} = %{version}
+Provides:       %{name}-devel = %{version}
+BuildArch:      noarch
 AutoReqProv:    no
 
 
 %description
+
+
+%description devel
 
 
 %prep
@@ -23,13 +35,12 @@ AutoReqProv:    no
 
 %build
 %set_build_flags_with_rpath
-mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=%_prefix -DCMAKE_CXX_COMPILER=%_bindir/g++ -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" -DSPDLOG_BUILD_SHARED=ON ..
-%make_build
+%cmake_setup -DSPDLOG_BUILD_SHARED=ON
+%cmake_build
 
 
 %install
-cd build && %make_install
+%cmake_install
 
 
 %clean
@@ -37,9 +48,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%_libdir/lib%{system_name}.so.*
+
+
+%files devel
 %_includedir/%{system_name}/*
+%_libdir/lib%{system_name}.so
 %_libdir/cmake/%{system_name}/*.cmake
-%_libdir/lib%{system_name}.so*
 %_libdir/pkgconfig/%{system_name}.pc
 
 

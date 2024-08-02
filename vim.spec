@@ -4,7 +4,7 @@
 %define system_name vim
 
 Name:           EDO%{system_name}
-Version:        9.1.0516
+Version:        9.1.0646
 Release:        1%{?dist}
 Summary:        vim text editor.
 License:        GPL
@@ -46,6 +46,7 @@ er, and the mouse can be used.
 %install
 %make_install
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%_datadir/vim/vim91/tools/demoserver.py
+%__rm -f %{buildroot}%_datadir/vim/vim91/{indent,syntax}/cmake.vim
 
 
 %clean
@@ -68,5 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/icons/*
 
 %changelog
+* Thu Aug 01 2024 Edoardo Di Matteo
+- Upgrade to vim 9.1
+- Remove cmake syntax files because those come with cmake package.
 * Thu Jan 26 2023 Edoardo Di Matteo
 - 

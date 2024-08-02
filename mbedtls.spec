@@ -4,7 +4,7 @@
 %define system_name mbedtls
 
 Name:           EDO%{system_name}
-Version:        3.5.0
+Version:        3.6.0
 Release:        1%{?dist}
 Summary:        Light-weight cryptographic and SSL/TLS library
 License:        GPL
@@ -74,9 +74,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Aug 01 2024 Edoardo Di Matteo
+- Upgrade version. To prepare the source package,
+- run the git clone, submodule init and make the xz. Install
+- the python requirements in scripts/driver.requirements.txt
+- and start the build.
 * Thu Jan 26 2023 Edoardo Di Matteo
 - 
-/home/edoardo/rpmbuild/BUILDROOT/EDOmbedtls-3.5.0-1.el9.x86_64/lib
-/home/edoardo/rpmbuild/BUILDROOT/EDOmbedtls-3.5.0-1.el9.x86_64/lib/libmbedtls.a
-/home/edoardo/rpmbuild/BUILDROOT/EDOmbedtls-3.5.0-1.el9.x86_64/lib/libmbedx509.a
-/home/edoardo/rpmbuild/BUILDROOT/EDOmbedtls-3.5.0-1.el9.x86_64/lib/libmbedcrypto.a

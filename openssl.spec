@@ -3,12 +3,12 @@
 %define system_name openssl
 
 Name:           EDO%{system_name}
-Version:        3.1.2
+Version:        3.3.1
 Release:        1%{?dist}
 Summary:        Utilities from the general purpose cryptography library with TLS implementation.
 License:        GPL
 URL:            https://www.openssl.org
-Source0:        %{system_name}-%{version}.tar.gz
+Source0:        %{system_name}-%{version}.tar.xz
 Provides:       %{name} = %{version}
 BuildRequires:  rpm-build glibc-devel
 Requires:       %{name}-libs = %{version}
@@ -95,6 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/libcrypto.so
 %_libdir/libssl.so
 %_libdir/pkgconfig/*.pc
+%_libdir/cmake/OpenSSL/*.cmake
 %_includedir/%{system_name}/*
 %_mandir/man3/*.3ossl
 

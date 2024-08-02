@@ -42,6 +42,12 @@
 %ninja_install DESTDIR=%{buildroot} %ninja_build install
 
 
+%cmake %_bindir/cmake
+%cmake_setup %cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=%_prefix -DCMAKE_C_COMPILER=%_bindir/gcc -DCMAKE_CXX_COMPILER=%_bindir/g++ -DCMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" -S . -B ./build
+%cmake_build %cmake --build ./build
+%cmake_install %cmake --install ./build --prefix=%buildroot%_prefix
+
+
 %system_autoreconf /usr/bin/autoreconf -f -i -Wall,no-obsolete
 %autoreconf %_bindir/autoreconf -f -i -Wall,no-obsolete
 
