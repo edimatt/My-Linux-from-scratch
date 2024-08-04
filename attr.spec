@@ -3,13 +3,13 @@
 %define system_name attr
 
 Name:           EDO%{system_name}
-Version:        2.5.1
+Version:        2.5.2
 Release:        2%{?dist}
 Summary:        Dynamic library for access control list support.
 License:        GPL
 Vendor:         %{_vendor}
-URL:            https://www.mpfr.org
-Source0:        %{system_name}-%{version}.tar.gz
+URL:            https://download-mirror.savannah.gnu.org/releases/attr
+Source0:        %{system_name}-%{version}.tar.xz
 AutoReqProv:    no
 BuildRequires:  glibc-devel 
 Requires:       glibc %{name}-libs
@@ -83,10 +83,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%doc ABOUT-NLS
+%doc README
 %doc CHANGES
 %doc COPYING
 %doc COPYING.LGPL
-%doc PORTING
 %_bindir/%{system_name}
 %_bindir/getf%{system_name}
 %_bindir/setf%{system_name}

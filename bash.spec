@@ -3,7 +3,7 @@
 %define system_name bash
 
 Name:           EDO%{system_name}
-Version:        5.2.15
+Version:        5.2.32
 Release:        1%{?dist}
 Summary:        The Bourne Again SHell.
 License:        GPL
@@ -54,6 +54,7 @@ sixtyâfour.
             --enable-casemod-attributes \
             --enable-casemod-expansions \
             --without-bash-malloc       \
+            --with-libiconv-prefix=%_prefix \
             --docdir=%_docdir/%{name}
 %make_build
 
@@ -67,8 +68,17 @@ cd %{buildroot}%{_bindir} && ln -sfv %{system_name} sh && cd -
 rm -rf $RPM_BUILD_ROOT
 
 
+%post
+if ! grep -q "%_bindir/bash" /etc/shells ; then echo "%_bindir/bash" >> /etc/shells ; fi
+
+
+%postun
+sed -i "\|/opt/edo/bin/bash|d" /etc/shells
+
+
+
 %files
-%doc CHANGES COMPAT NEWS POSIX RBASH README FAQ INTRO bash.html bashref.html
+%doc CHANGES COMPAT NEWS POSIX RBASH README doc/FAQ doc/INTRO doc/bash.html doc/bashref.html
 %_bindir/sh
 %_bindir/%{system_name}*
 %_mandir/man1/%{system_name}*.1

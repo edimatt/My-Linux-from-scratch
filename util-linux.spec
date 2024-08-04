@@ -3,7 +3,7 @@
 %define system_name util-linux
 
 Name:           EDO%{system_name}
-Version:        2.39.2
+Version:        2.40.2
 Release:        1%{?dist}
 Summary:        Random collection of Linux utilities.
 License:        GPL
@@ -37,7 +37,7 @@ util-linux is a random collection of Linux utilities
 
 
 %build
-%_configure --disable-makeinstall-chown --docdir=%_docdir/%{name}
+%_configure --disable-makeinstall-chown --docdir=%_docdir/%{name} --with-python_prefix=%_prefix
 %make_build
 
 
@@ -53,8 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/locale/*/LC_MESSAGES/%{system_name}.mo
 %_datadir/bash-completion/completions/*
 %_docdir/%{name}/*
-%_libdir/lib*.so.1*
-%python3_sitearch/libmount/
+%_libdir/lib*.so.*
 
 
 %files devel

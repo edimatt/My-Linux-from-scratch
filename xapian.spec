@@ -16,14 +16,14 @@ AutoReqProv:    no
 
 
 %package libs 
-Summary:        Libraries for decoding LZMA compression.
+Summary:        Libraries for %{system_name}.
 Requires:       glibc EDOgcc EDOutil-linux EDOzlib
 Provides:       %{name}-libs = %{version}
 AutoReqProv:    no
 
 
 %package devel
-Summary:        Devel libraries and headers for liblzma.
+Summary:        Devel libraries and headers for %{system_name}.
 Requires:       %{name}-libs = %{version}
 Provides:       %{name}-devel = %{version}
 BuildArch:      noarch

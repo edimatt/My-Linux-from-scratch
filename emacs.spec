@@ -3,13 +3,12 @@
 %define system_name emacs
 
 Name:           EDOemacs
-Version:        29.1
+Version:        29.4
 Release:        2%{?dist}
 Summary:        GNU Emacs text editor.
-
 License:        GPL
-URL:            https://github.com/emacs-mirror/emacs
-Source0:        %{system_name}-%{system_name}-%{version}.tar.gz
+URL:            https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html
+Source0:        https://mirror.ibcp.fr/pub/gnu/emacs/%{system_name}-%{version}.tar.xz
 
 BuildRequires:  EDOnettle-devel EDOzlib-devel giflib-devel libjpeg-turbo-devel gtk3-devel EDOgnutls-devel libXpm-devel libjpeg-turbo-devel EDOtexinfo rpm-build EDOncurses-devel EDOlibffi-devel EDOxz-devel EDOsqlite-devel EDOzstd-devel EDOjansson-devel EDOp11-kit-devel
 Requires:       atk at-spi2-atk at-spi2-core bzip2-libs cairo cairo-gobject dbus-libs fontconfig freetype fribidi gdk-pixbuf2 giflib glib2 glibc EDOgmp EDOgnutls graphite2 gtk3 harfbuzz jbigkit-libs json-glib libblkid libbrotli libcap libdatrie libepoxy EDOlibffi libgcc libgcrypt libgpg-error libicu libidn2 libjpeg-turbo libmount libpng libselinux libstdc++ libstemmer libtasn1 libthai libtiff libtracker-sparql libunistring libwayland-client libwayland-cursor libwayland-egl libwebp libX11 libX11-xcb libXau libxcb libXcomposite libXcursor libXdamage libXext libXfixes libXi libXinerama libxkbcommon libxml2 libXrandr libXrender EDOzstd lz4-libs EDOncurses-libs EDOnettle EDOp11-kit pango EDOpcre EDOpcre2 pixman EDOsqlite-libs systemd-libs EDOxz-libs EDOzlib EDOjansson
@@ -21,7 +20,7 @@ AutoReqProv:    no
 GNU Emacs text editor.
 
 %prep
-%autosetup -n %{system_name}-%{system_name}-%{version}
+%autosetup -n %{system_name}-%{version}
 ./autogen.sh
 
 
