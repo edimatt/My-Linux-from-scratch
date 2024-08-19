@@ -1,24 +1,27 @@
 %global debug_package %{nil}
-%global isolated_build 1
 %define _build_id_links none
-%define system_name pip
+%define system_name prompt_toolkit
 
 Name:           EDOpython-%{system_name}
-Version:        24.2
+Version:        3.0.47
 Release:        1%{?dist}
-Summary:        The PyPA recommended tool for installing Python packages.
+Summary:        Library for building powerful interactive command lines in Python
 License:        MIT 
-URL:            https://pip.pypa.io
+URL:            https://pypi.org/project/%{system_name}/
 Source:         %{system_name}-%{version}.tar.gz
 BuildRequires:  rpm-build glibc-devel EDOpython
-Requires:       glibc EDOpython
+Requires:       glibc EDOpython EDOpython-wcwidth
 AutoReqProv:    no
 BuildArch:      noarch
 
 
 %description
-pip  is  the  package installer for Python. You can use it to in‐
-stall packages from the Python Package Index and other indexes.
+prompt_toolkit  is  a  library  for building powerful interactive
+command line and terminal applications in Python.
+
+It can be a very advanced pure Python replacement for  GNU  read‐
+line,  but  it can also be used for building full screen applica‐
+tions.
 
 
 %prep
@@ -31,7 +34,6 @@ stall packages from the Python Package Index and other indexes.
 
 %install
 %pip_install
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/pip* %{buildroot}%{_libdir}
 
 
 %check
@@ -42,9 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%_bindir/%{system_name}*
 %{_libdir}/python3.12/site-packages/%{system_name}*
-# %{_mandir}/man1/%{system_name}.1
 
 
 %changelog

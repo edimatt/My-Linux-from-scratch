@@ -1,21 +1,24 @@
 %global debug_package %{nil}
 %define _build_id_links none
-%define system_name colorama
+%define system_name msgpack
 
 Name:           EDOpython-%{system_name}
-Version:        0.4.6
+Version:        1.0.8
 Release:        1%{?dist}
-Summary:        Cross-platform colored terminal text.
-License:        MIT 
-URL:            https://pip.pypa.io
-Source:         %{system_name}-%{version}.tar.gz
+Summary:        Efficient binary serialization format.
+License:        Apache 2.0
+URL:            https://mesonbuild.com
+Source:         %{system_name}-%{version}.tar.xz
 BuildRequires:  rpm-build glibc-devel EDOpython
 Requires:       glibc EDOpython
 AutoReqProv:    no
-BuildArch:      noarch
 
 
 %description
+MessagePack  is an efficient binary serialization format. It lets
+you exchange data among multiple languages like  JSON.  But  it’s
+faster  and  smaller.  This package provides CPython bindings for
+reading and writing MessagePack data.
 
 
 %prep

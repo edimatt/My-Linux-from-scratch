@@ -36,8 +36,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%{_libdir}/python3.11/site-packages/%{system_name}*
-%{_libdir}/python3.11/site-packages/markupsafe/*
+%{_libdir}/python3.12/site-packages/%{system_name}*
+%{_libdir}/python3.12/site-packages/markupsafe/*
 
 
 %changelog

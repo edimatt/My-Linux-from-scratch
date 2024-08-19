@@ -3,7 +3,7 @@
 %define system_name expat
 
 Name:           EDO%{system_name}
-Version:        2.5.1
+Version:        2.6.2
 Release:        1%{?dist}
 Summary:        A C99 library for parsing XML 1.0 Fourth Edition.
 License:        GPL
@@ -61,21 +61,21 @@ documentation to develop XML applications with expat.
 
 %build
 %set_build_flags_with_rpath
-pushd expat
+# pushd expat
 # Building from git clone
-./buildconf.sh
+# ./buildconf.sh
 %configure  --disable-static \
             --docdir=%_docdir/%{system_name}-%{version}
 %make_build
-popd
+# popd
 
 
 %check
-cd expat && make check
+make check
 
 
 %install
-cd expat && %make_install
+%make_install
 
 
 %clean
@@ -85,6 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %_bindir/xmlwf
 %_libdir/lib%{system_name}*.so.1*
+%_mandir/man1/xmlwf.1
 
 
 %files devel

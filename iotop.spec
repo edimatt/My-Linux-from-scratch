@@ -3,7 +3,7 @@
 %define system_name iotop
 
 Name:           EDO%{system_name}
-Version:        1.23
+Version:        1.26
 Release:        1%{?dist}
 Summary:        Top like utility for I/O
 

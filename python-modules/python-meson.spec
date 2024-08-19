@@ -3,7 +3,7 @@
 %define system_name meson
 
 Name:           EDOpython-%{system_name}
-Version:        1.2.1
+Version:        1.5.1
 Release:        1%{?dist}
 Summary:        A high performance build system.
 License:        Apache 2.0
@@ -34,6 +34,7 @@ start compiling code.
 %install
 %pip_install
 %{__rm} %{buildroot}%{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
+pathfix.py -i %_bindir/python3 -n %buildroot%_bindir/%{system_name}
 
 
 %check
@@ -45,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %_bindir/%{system_name}
-%{_libdir}/python3.11/site-packages/%{system_name}*
+%{_libdir}/python3.12/site-packages/%{system_name}*
 %{_mandir}/man1/%{system_name}.1
 
 

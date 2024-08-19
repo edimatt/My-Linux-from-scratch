@@ -5,10 +5,10 @@
 Name:           EDO%{system_name}
 Version:        0.24
 Release:        2%{?dist}
-Summary:        isl  is  a  thread‐safe C library for manipulating sets and relations of integer points.
+Summary:        Thread‐safe C library for manipulating sets and relations of integer points.
 License:        GPL
 Vendor:         %{_vendor}
-URL:            https://www.mpfr.org
+URL:            https://github.com/Meinersbur/isl
 Source0:        %{system_name}-%{system_name}-%{version}.tar.gz
 AutoReqProv:    no
 BuildRequires:  glibc-devel EDOgmp-devel

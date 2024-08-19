@@ -39,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %{_bindir}/markdown-it
-%{_libdir}/python3.11/site-packages/markdown_it*
+%{_libdir}/python3.12/site-packages/markdown_it*
 
 
 %changelog

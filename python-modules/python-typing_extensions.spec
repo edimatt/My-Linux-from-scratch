@@ -38,8 +38,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%{_libdir}/python3.11/site-packages/%{system_name}*
-%{_libdir}/python3.11/site-packages/__pycache__/%{system_name}*
+%{_libdir}/python3.12/site-packages/%{system_name}*
+%{_libdir}/python3.12/site-packages/__pycache__/%{system_name}*
 
 
 %changelog

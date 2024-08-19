@@ -3,7 +3,7 @@
 %define system_name libffi
 
 Name:           EDO%{system_name}
-Version:        3.4.4
+Version:        3.4.6
 Release:        1%{?dist}
 Summary:        A portable foreign function interface library.
 License:        GPL
@@ -59,6 +59,7 @@ values passed between the two languages.
 
 %prep
 %setup -n %{system_name}-%{version}
+./autogen.sh
 
 
 %build

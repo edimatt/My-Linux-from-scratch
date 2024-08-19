@@ -11,10 +11,11 @@ License:        GPL
 URL:            http://jubalh.github.io/nudoku/
 Source0:        %{system_name}-%{version}.tar.xz
 
-BuildRequires:  rpm-build EDOncurses-devel
-Requires:       EDOncurses-libs glibc
+BuildRequires:  rpm-build EDOncurses-devel EDOcairo-devel EDOzlib-devel EDOlibpng-devel EDOfontconfig-devel EDOfreetype-devel EDOlibX11-devel EDOlibXext-devel EDOlibxcb-devel EDOpixman-devel EDOexpat-devel EDObzip2-devel EDObrotli-devel EDOlibXau-devel
+Requires:       EDOncurses-libs glibc EDOncurses-libs EDOcairo EDOzlib EDOlibpng EDOfontconfig EDOfreetype EDOlibX11 EDOlibXext EDOlibxcb EDOpixman EDOexpat EDObzip2-libs EDObrotli-libs EDOlibXau 
 Provides:       %{name} = %{version}
 AutoReqProv:    no
+
 
 %description
 Can't  code?  Can't  hack?  Canât do anything cool on the command
@@ -34,7 +35,7 @@ and create single sudoku PNGs like the following:
 
 %build
 %set_build_flags_with_rpath
-%configure
+%configure --enable-cairo
 %make_build
 
 
