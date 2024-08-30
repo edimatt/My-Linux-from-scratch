@@ -1,9 +1,9 @@
 %global debug_package %{nil}
 %define _build_id_links none
-%define system_name Pygments
+%define system_name pygments
 
 Name:           EDOpython-%{system_name}
-Version:        2.16.1
+Version:        2.18.0
 Release:        1%{?dist}
 Summary:        Pygments is a syntax highlighting package written in Python.
 License:        BSD-2

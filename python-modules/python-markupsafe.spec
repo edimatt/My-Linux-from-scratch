@@ -3,7 +3,7 @@
 %define system_name MarkupSafe
 
 Name:           EDOpython-%{system_name}
-Version:        2.1.3
+Version:        2.1.5
 Release:        1%{?dist}
 Summary:        Safely add untrusted strings to HTML/XML markup.
 License:        BSDG

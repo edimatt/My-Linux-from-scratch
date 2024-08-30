@@ -10,7 +10,7 @@ License:        Apache 2.0
 URL:            https://%{system_name}.github.io
 Source:         %{system_name}-%{version}.tar.gz
 BuildRequires:  rpm-build EDOpython
-Requires:       glibc EDOpython EDOpython-sqlparse EDOpython-prompt_toolkit EDOpython-cli_helpers EDOpython-pygments EDOpython-click
+Requires:       glibc EDOpython EDOpython-sqlparse EDOpython-prompt_toolkit EDOpython-cli_helpers EDOpython-pygments EDOpython-click EDOpython-pygments
 AutoReqProv:    no
 BuildArch:      noarch
 
