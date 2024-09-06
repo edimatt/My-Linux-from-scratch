@@ -31,7 +31,7 @@ brary.  Large ecosystem of partners, communities, and tools
 %build
 export GOROOT=%_libdir/go
 export GOROOT_BOOTSTRAP=$(go env GOROOT)
-export GOPATH=%{_builddir}/%{system_name}-%{version}
+export GOPATH=%{_builddir}
 cd src
 ./make.bash
 

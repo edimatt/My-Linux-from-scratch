@@ -47,7 +47,7 @@ installed.
 
 %build
 %set_build_flags_with_rpath
-%_configure --enable-multibyte --with-curses
+%_configure --enable-multibyte --with-curses --with-shared-termcap-library
 %make_build
 
 
